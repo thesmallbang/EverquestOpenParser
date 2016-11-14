@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDps", "OpenDps\OpenDps.csproj", "{0B0C32ED-8D0F-4DCF-8EBF-9C1CC58EB3D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenParser", "OpenParser\OpenParser.csproj", "{2A1CA212-29DC-42AC-BA76-ECF5936A8786}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B0C32ED-8D0F-4DCF-8EBF-9C1CC58EB3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0C32ED-8D0F-4DCF-8EBF-9C1CC58EB3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0C32ED-8D0F-4DCF-8EBF-9C1CC58EB3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0C32ED-8D0F-4DCF-8EBF-9C1CC58EB3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1CA212-29DC-42AC-BA76-ECF5936A8786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1CA212-29DC-42AC-BA76-ECF5936A8786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1CA212-29DC-42AC-BA76-ECF5936A8786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1CA212-29DC-42AC-BA76-ECF5936A8786}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

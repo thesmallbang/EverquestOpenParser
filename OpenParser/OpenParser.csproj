@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A1CA212-29DC-42AC-BA76-ECF5936A8786}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenParser</RootNamespace>
+    <AssemblyName>OpenParser</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\Combat.cs" />
+    <Compile Include="Constants\Chat.cs" />
+    <Compile Include="Constants\Misc.cs" />
+    <Compile Include="Enums\FactionChanges.cs" />
+    <Compile Include="HandlerObjects\Converters\CombatInfoConverter.cs" />
+    <Compile Include="HandlerObjects\Combat.cs" />
+    <Compile Include="Enums\DamageTypes.cs" />
+    <Compile Include="Enums\ElementalDamageTypes.cs" />
+    <Compile Include="Enums\PhysicalDamageTypes.cs" />
+    <Compile Include="HandlerObjects\DeathInfo.cs" />
+    <Compile Include="HandlerObjects\Faction.cs" />
+    <Compile Include="HandlerObjects\ICombatInfo.cs" />
+    <Compile Include="HandlerObjects\IMissInfo.cs" />
+    <Compile Include="HandlerObjects\IDamageInfo.cs" />
+    <Compile Include="HandlerObjects\IResult.cs" />
+    <Compile Include="HandlerObjects\MeleeMissInfo.cs" />
+    <Compile Include="HandlerObjects\MeleeDamageInfo.cs" />
+    <Compile Include="HandlerObjects\Say.cs" />
+    <Compile Include="HandlerObjects\Tell.cs" />
+    <Compile Include="ISubscription.cs" />
+    <Compile Include="LogEntry.cs" />
+    <Compile Include="LogFile.cs" />
+    <Compile Include="ParseHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subscribers\ConsoleSubscription.cs" />
+    <Compile Include="Subscribers\CombatSubscription.cs" />
+    <Compile Include="Subscribers\FactionSubscription.cs" />
+    <Compile Include="Subscribers\SaySubscription.cs" />
+    <Compile Include="Subscribers\Strategies\Combat\IMissStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Combat\IHitStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Combat\ICombatStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Combat\DeathStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Combat\MeleeMissStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Combat\MeleeHitStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Say\ISayStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Say\SayAllStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Say\SayNpcStrategy.cs" />
+    <Compile Include="Subscribers\Strategies\Say\SayPlayerStrategy.cs" />
+    <Compile Include="Subscribers\TellSubscription.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
