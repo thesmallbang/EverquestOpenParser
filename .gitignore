@@ -3,3 +3,7 @@
 ################################################################################
 
 /OpenParser/bin/Debug
+/OpenParser/obj/Debug
+/OpenDps/obj/Debug
+/OpenDps/bin/Debug
+/.vs/EQ/v14
