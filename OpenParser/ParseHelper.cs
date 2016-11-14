@@ -35,7 +35,7 @@ namespace OpenParser
 
         public static string AddSpaces(this string text)
         {
-            if (!text.StartsWith(""))
+            if (!text.StartsWith(" "))
                 text = " " + text;
 
             if (!text.EndsWith(" "))
