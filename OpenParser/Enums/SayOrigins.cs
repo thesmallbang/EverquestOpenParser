@@ -3,11 +3,10 @@
 namespace OpenParser.Enums
 {
     [Flags]
-    public enum DamageTypes
+    public enum SayOrigins
     {
         Unknown = 0,
-        Physical = 1,
-        Elemental = 2,
-        Raw = 3
+        Player = 1,
+        Npc = 2
     }
 }

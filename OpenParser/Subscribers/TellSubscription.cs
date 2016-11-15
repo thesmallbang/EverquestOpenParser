@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.HandlerObjects;
+using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
 {
@@ -9,43 +10,35 @@ namespace OpenParser.Subscribers
     {
         public TellSubscription(LogFile logFile)
         {
-            LogFile = logFile;
-            Enable();
+            Subscriber = new Subscriber<Tell>(logFile, new RegexStrategy<Tell>(Chat.TellRegex, HandleMatches));
+            Subscriber.Received += Subscriber_Received;
         }
 
-        private LogFile LogFile { get; }
-        private bool Enabled { get; set; }
+        private Subscriber<Tell> Subscriber { get; }
 
         public void Enable()
         {
-            if (Enabled)
-                return;
-
-            LogFile.OnChanged += LogFile_OnChanged;
-            Enabled = true;
+            Subscriber.Enable();
         }
 
         public void Disable()
         {
-            if (!Enabled)
-                return;
-
-            LogFile.OnChanged -= LogFile_OnChanged;
-            Enabled = false;
+            Subscriber.Disable();
         }
 
-        public event EventHandler<Tell> Received;
+        public event EventHandler<Tell> TellReceived;
 
-        private void LogFile_OnChanged(object sender, IEnumerable<LogEntry> logEntries)
+        private void Subscriber_Received(object sender, Tell e)
         {
-            foreach (var entry in logEntries)
-                if (entry.Text.IsRegexMatch(Chat.TellRegex))
-                    TriggerReceived(Tell.Create(entry));
+            TellReceived?.Invoke(sender, e);
         }
 
-        private void TriggerReceived(Tell tell)
+        private Tell HandleMatches(LogEntry entry, Match match)
         {
-            Received?.Invoke(this, tell);
+            var from = match.Groups[1].Value;
+            var message = match.Groups[2].Value;
+
+            return new Tell(entry, from, message);
         }
     }
 }

@@ -17,8 +17,7 @@ namespace OpenParser
 
         public static string TextFromEntry(this string entry)
         {
-            var unclean = entry.StartsWith("[") ? entry.Substring(27) : entry;
-            return unclean.EndsWith("'") ? unclean.Substring(0, unclean.Length - 1) : unclean;
+            return entry.StartsWith("[") ? entry.Substring(27) : entry;
         }
 
         public static bool IsRegexMatch(this string entry, string regex)
@@ -26,6 +25,7 @@ namespace OpenParser
             var m = Regex.Match(entry, regex, RegexOptions.IgnoreCase);
             return m.Success;
         }
+
 
         public static Match RegexMatches(this string entry, string regex)
         {
@@ -44,9 +44,9 @@ namespace OpenParser
             return text;
         }
 
-        public static bool IsPlayerMessage(string text)
+        public static bool IsPlayerMessage(this string text)
         {
-            return text.IsRegexMatch(Chat.PlayerSayRegex) || text.IsRegexMatch(Chat.TellRegex);
+            return text.IsRegexMatch("FIXME") || text.IsRegexMatch(Chat.TellRegex);
         }
 
         public static string GetRightText(this string text, string lookFor)
