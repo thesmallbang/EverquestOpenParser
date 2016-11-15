@@ -54,6 +54,7 @@
     <Compile Include="EventResults\MeleeDamageInfo.cs" />
     <Compile Include="EventResults\Say.cs" />
     <Compile Include="EventResults\Tell.cs" />
+    <Compile Include="Subscribers\FactionSubscription.cs" />
     <Compile Include="Subscribers\ISubscriber.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="LogFile.cs" />

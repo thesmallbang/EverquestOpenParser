@@ -21,6 +21,10 @@ namespace OpenParser.Subscribers
             saySubscription.SayReceived += SaySubscription_SayReceived;
             Subscriptions.Add(saySubscription);
 
+            var factionSubscription = new FactionSubscription(logFile);
+            factionSubscription.FactionReceived += FactionSubscription_FactionReceived;
+            Subscriptions.Add(factionSubscription);
+
             var physicalHitSubscription = new PhysicalHitSubscription(logFile);
             physicalHitSubscription.HitReceived += PhysicalHitSubscription_HitReceived;
             Subscriptions.Add(physicalHitSubscription);
@@ -62,6 +66,14 @@ namespace OpenParser.Subscribers
         {
             OnSay?.Invoke(sender, e);
         }
+
+        public event EventHandler<Faction> OnFaction;
+
+        private void FactionSubscription_FactionReceived(object sender, Faction e)
+        {
+            OnFaction?.Invoke(sender, e);
+        }
+
 
         public event EventHandler<Combat<MeleeDamageInfo>> OnPhsyicalHit;
 
