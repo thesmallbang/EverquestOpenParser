@@ -1,4 +1,4 @@
-namespace OpenParser.HandlerObjects
+namespace OpenParser.EventResults
 {
     public interface IDamageInfo : ICombatInfo
     {

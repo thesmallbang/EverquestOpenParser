@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using OpenParser;
-using OpenParser.HandlerObjects;
+using OpenParser.EventResults;
 using OpenParser.Subscribers;
 
 namespace OpenDps

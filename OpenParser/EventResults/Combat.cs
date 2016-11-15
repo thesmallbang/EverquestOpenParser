@@ -1,4 +1,4 @@
-﻿namespace OpenParser.HandlerObjects
+﻿namespace OpenParser.EventResults
 {
     public class Combat<T>
         where T : ICombatInfo

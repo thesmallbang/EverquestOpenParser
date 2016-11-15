@@ -1,6 +1,6 @@
 ﻿using OpenParser.Enums;
 
-namespace OpenParser.HandlerObjects
+namespace OpenParser.EventResults
 {
     public class Faction
     {

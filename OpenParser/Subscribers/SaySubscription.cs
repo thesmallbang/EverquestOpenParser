@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.Enums;
-using OpenParser.HandlerObjects;
+using OpenParser.EventResults;
 using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
