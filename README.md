@@ -88,8 +88,14 @@ Here is an example that would trigger on all Say messages unless the message con
 Subscriber = new Subscriber<Say>(logFile, new RegexWithCheckStrategy<Say>(Chat.SayRegex,o=> !o.Text.ToLower().Contains("platinum".AddSpaces()), HandleMatches));
 ```
 
+##### LogCheckStrategy #####
+Similar to the RegexWithCheckStrategy but provides no Regex filtering. Situtational but has less performance overhead than a regex check.
+```c#
+Subscriber = new Subscriber<Empty>(logFile,new LogCheckStrategy<Empty>(o=>o.Text == "You are hungry.", HandleMatches));
 
-
+//The same as above but only trigger event if the log entry was made within the last 30 seconds.
+Subscriber = new Subscriber<Empty>(logFile, new LogCheckStrategy<Empty>(o => o.Text == "You are hungry." && o.When > DateTime.Now.AddSeconds(-30), HandleMatches));
+```
 
 
 
