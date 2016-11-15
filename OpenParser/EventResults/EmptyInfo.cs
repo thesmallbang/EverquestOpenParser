@@ -6,9 +6,6 @@
         {
         }
 
-        public static EmptyInfo Instance()
-        {
-            return new EmptyInfo();
-        }
+        public static EmptyInfo Instance() => new EmptyInfo();
     }
 }

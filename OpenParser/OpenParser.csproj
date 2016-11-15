@@ -52,6 +52,7 @@
     <Compile Include="EventResults\IDamageInfo.cs" />
     <Compile Include="EventResults\MeleeMissInfo.cs" />
     <Compile Include="EventResults\MeleeDamageInfo.cs" />
+    <Compile Include="EventResults\Empty.cs" />
     <Compile Include="EventResults\Say.cs" />
     <Compile Include="EventResults\Tell.cs" />
     <Compile Include="Subscribers\FactionSubscription.cs" />
