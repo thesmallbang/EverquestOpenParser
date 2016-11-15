@@ -93,12 +93,29 @@ namespace OpenParser
 
         public void ReadChanges()
         {
-            var changes = File.ReadLines(Path).Skip(LastLineNumber).ToList();
-
-            var logs = changes.Select(LogEntry.Create);
+            var changes = GetEntries().ToList();
 
             LastLineNumber += changes.Count;
-            TriggerChanged(logs);
+            TriggerChanged(changes);
+        }
+
+
+        //add specific method for reading larger amounts of data so sequence of changes can be maintained by event handlers
+        public void ReadChangesByLine()
+        {
+            var changes = GetEntries().ToList();
+
+            LastLineNumber += changes.Count;
+
+            foreach (var change in changes)
+                TriggerChanged(new List<LogEntry> {change});
+        }
+
+        private IEnumerable<LogEntry> GetEntries()
+        {
+            var changes = File.ReadLines(Path).Skip(LastLineNumber).Select(LogEntry.Create);
+
+            return changes;
         }
     }
 }
