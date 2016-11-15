@@ -54,7 +54,7 @@
     <Compile Include="HandlerObjects\MeleeDamageInfo.cs" />
     <Compile Include="HandlerObjects\Say.cs" />
     <Compile Include="HandlerObjects\Tell.cs" />
-    <Compile Include="ISubscriber.cs" />
+    <Compile Include="Subscribers\ISubscriber.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="LogFile.cs" />
     <Compile Include="ParseHelper.cs" />
