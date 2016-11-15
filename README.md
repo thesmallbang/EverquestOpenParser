@@ -1,8 +1,7 @@
 #Another EQ Log Parser? Why?#
 
 Everquest OpenParser is intended to be used by other developers who want to create a functional application (dps tracker, audio triggers etc). 
-While they are some objects that provide interpretations of the log file data. 
-They are simply included to save the developer some time for known and common Everquest events.
+While there are some objects in the library that provide interpretations of the log file data, they are simply included to save the developer some time for known and common Everquest events.
 
 There are some other libraries out for parsing the EQ logs but I personally did not like the implementation strategies and lack of flexibility for the library consumer.
 
