@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace OpenParser.Subscribers
+{
+    public class Subscriber<T> : ISubscriber<T>
+    {
+        public Subscriber(LogFile logFile, ISubscriberStrategy<T> strategy)
+        {
+            LogFile = logFile;
+            Strategy = strategy;
+            LogFile.OnChanged += LogFile_OnChanged;
+            Enable();
+        }
+
+        private LogFile LogFile { get; }
+        private bool Enabled { get; set; }
+        private ISubscriberStrategy<T> Strategy { get; }
+
+        public event EventHandler<T> Received;
+
+        public void Enable()
+        {
+            Enabled = true;
+        }
+
+        public void Disable()
+        {
+            Enabled = false;
+        }
+
+        private void LogFile_OnChanged(object sender, IEnumerable<LogEntry> logEntries)
+        {
+            if (!Enabled)
+                return;
+
+            foreach (var entry in logEntries)
+                if (Strategy.IsMatch(entry))
+                    TriggerReceived(Strategy.GetResult(entry));
+        }
+
+        private void TriggerReceived(T response)
+        {
+            Received?.Invoke(this, response);
+        }
+    }
+}

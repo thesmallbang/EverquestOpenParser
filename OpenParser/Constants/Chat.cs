@@ -2,13 +2,7 @@
 {
     public class Chat
     {
-        public const string TellId = " tells you, '";
-        public const string TellRegex = @"^(?:[A-Z][a-z]+)\s+(tells you, ')";
-
-        public const string PlayerSayId = " says, '";
-        public const string PlayerSayRegex = @"^(?:[A-Z][a-z]+)\s+(says, ')";
-
-        public const string NpcSayId = " says '";
-        public const string NpcSayRegex = @"^.+(says ')";
+        public const string TellRegex = @"\A([^,]+?) tells you, '(.+)'$";
+        public const string SayRegex = @"\A(.+?) says(,?) '(.+)'$";
     }
 }

@@ -2,15 +2,13 @@
 {
     public class MeleeDamageInfo : IDamageInfo
     {
-        public string DamageType { get; set; }
-
-        public bool IsCritical { get; set; }
-        public long Amount { get; set; }
-
-        public bool HitSuccess
+        public MeleeDamageInfo(long amount, string damageType)
         {
-            get { return true; }
-            set { }
+            Amount = amount;
+            DamageType = damageType;
         }
+
+        public string DamageType { get; }
+        public long Amount { get; }
     }
 }

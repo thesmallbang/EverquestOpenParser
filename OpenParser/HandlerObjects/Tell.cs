@@ -1,26 +1,17 @@
-﻿using OpenParser.Constants;
-
-namespace OpenParser.HandlerObjects
+﻿namespace OpenParser.HandlerObjects
 {
-    public class Tell : IResult
+    public class Tell
     {
-        private Tell()
+        public Tell(LogEntry entry, string from, string message)
         {
+            LogEntry = entry;
+            From = from;
+            Message = message;
         }
 
-        public string From { get; set; }
-        public string Message { get; set; }
+        public string From { get; private set; }
+        public string Message { get; private set; }
 
-        public LogEntry LogEntry { get; set; }
-
-        public static Tell Create(LogEntry entry)
-        {
-            return new Tell
-            {
-                From = entry.Text.GetLeftText(Chat.TellId),
-                Message = entry.Text.GetRightText(Chat.TellId),
-                LogEntry = entry
-            };
-        }
+        public LogEntry LogEntry { get; private set; }
     }
 }

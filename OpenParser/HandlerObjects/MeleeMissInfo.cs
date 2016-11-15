@@ -1,14 +1,14 @@
 ﻿namespace OpenParser.HandlerObjects
 {
-    public class MeleeMissInfo : IMissInfo
+    public class MeleeMissInfo : ICombatInfo
     {
-        public bool HitSuccess
+        public MeleeMissInfo(string attemptType, string missType)
         {
-            get { return false; }
-            set { }
+            AttemptType = attemptType;
+            MissType = missType;
         }
 
-        public string AttemptType { get; set; }
-        public string MissType { get; set; }
+        public string AttemptType { get; }
+        public string MissType { get; }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace OpenParser
+﻿namespace OpenParser.Subscribers
 {
     public interface ISubscription
     {
-        void Disable();
         void Enable();
+        void Disable();
     }
 }

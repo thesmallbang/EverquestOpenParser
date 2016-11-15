@@ -1,11 +1,20 @@
 ﻿namespace OpenParser.HandlerObjects
 {
-    public class Combat : IResult
+    public class Combat<T>
+        where T : ICombatInfo
     {
-        public string Attacker { get; set; }
-        public string Target { get; set; }
+        public Combat(LogEntry entry, string attacker, string target, T info)
+        {
+            LogEntry = entry;
+            Attacker = attacker;
+            Target = target;
+            Info = info;
+        }
 
-        public ICombatInfo Info { get; set; }
-        public LogEntry LogEntry { get; set; }
+        public string Attacker { get; }
+        public string Target { get; }
+
+        public T Info { get; }
+        public LogEntry LogEntry { get; }
     }
 }

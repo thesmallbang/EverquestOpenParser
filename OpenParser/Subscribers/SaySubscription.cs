@@ -1,54 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using OpenParser.Constants;
+using OpenParser.Enums;
 using OpenParser.HandlerObjects;
-using OpenParser.Subscribers.Strategies.Say;
+using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
 {
     public class SaySubscription : ISubscription
     {
-        public SaySubscription(LogFile logFile, ISayStrategy strategy)
+        public SaySubscription(LogFile logFile)
         {
-            LogFile = logFile;
-            Strategy = strategy;
-            Enable();
+            OriginCheck = SayOrigins.Npc | SayOrigins.Player | SayOrigins.Unknown;
+            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Chat.SayRegex, HandleMatches));
+            Subscriber.Received += Subscriber_Received;
         }
 
-        private LogFile LogFile { get; }
-        private bool Enabled { get; set; }
-        private ISayStrategy Strategy { get; }
+        public SaySubscription(LogFile logFile, SayOrigins originOptions)
+        {
+            OriginCheck = originOptions;
+            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Chat.SayRegex, HandleMatches));
+            Subscriber.Received += Subscriber_Received;
+        }
 
+        public SayOrigins OriginCheck { get; set; }
+
+        private Subscriber<Say> Subscriber { get; }
 
         public void Enable()
         {
-            if (Enabled)
-                return;
-
-            LogFile.OnChanged += LogFile_OnChanged;
-            Enabled = true;
+            Subscriber.Enable();
         }
 
         public void Disable()
         {
-            if (!Enabled)
-                return;
-
-            LogFile.OnChanged -= LogFile_OnChanged;
-            Enabled = false;
+            Subscriber.Disable();
         }
 
-        public event EventHandler<Say> Received;
+        public event EventHandler<Say> SayReceived;
 
-        private void LogFile_OnChanged(object sender, IEnumerable<LogEntry> logEntries)
+        private void Subscriber_Received(object sender, Say e)
         {
-            foreach (var entry in logEntries)
-                if (Strategy.IsMatch(entry))
-                    TriggerReceived(Strategy.GetSay(entry));
+            if (OriginCheck.HasFlag(e.Origin))
+                SayReceived?.Invoke(sender, e);
         }
 
-        private void TriggerReceived(Say say)
+        private Say HandleMatches(LogEntry entry, Match match)
         {
-            Received?.Invoke(this, say);
+            var from = match.Groups[1].Value;
+            var originCheck = match.Groups[2].Value;
+            var message = match.Groups[3].Value;
+
+            var origin = SayOrigins.Player;
+
+            if (originCheck == string.Empty)
+                origin = SayOrigins.Npc;
+
+            return new Say(entry, origin, from, message);
         }
     }
 }
