@@ -65,9 +65,9 @@ namespace OpenParser.Subscribers
                 subscription.Disable();
         }
 
-        public event EventHandler<ChatMessage> OnTell;
+        public event EventHandler<Tell> OnTell;
 
-        private void TellSubscription_Matched(object sender, ChatMessage e)
+        private void TellSubscription_Matched(object sender, Tell e)
         {
             OnTell?.Invoke(sender, e);
         }
