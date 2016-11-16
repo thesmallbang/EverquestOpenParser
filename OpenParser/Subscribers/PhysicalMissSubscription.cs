@@ -1,38 +1,19 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.EventResults;
 using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
 {
-    public class PhysicalMissSubscription : ISubscription
+    public class PhysicalMissSubscription : Subscription<Combat<MeleeMissInfo>>
     {
         public PhysicalMissSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Combat<MeleeMissInfo>>(logFile,
                 new RegexStrategy<Combat<MeleeMissInfo>>(Combat.MissRegex, HandleMatches));
-            Subscriber.Received += Subscriber_Received;
+            Subscriber.Matched += Subscriber_Matched;
         }
 
-        private Subscriber<Combat<MeleeMissInfo>> Subscriber { get; }
-
-        public void Enable()
-        {
-            Subscriber.Enable();
-        }
-
-        public void Disable()
-        {
-            Subscriber.Disable();
-        }
-
-        public event EventHandler<Combat<MeleeMissInfo>> MissReceived;
-
-        private void Subscriber_Received(object sender, Combat<MeleeMissInfo> e)
-        {
-            MissReceived?.Invoke(sender, e);
-        }
 
         private Combat<MeleeMissInfo> HandleMatches(LogEntry entry, Match match)
         {

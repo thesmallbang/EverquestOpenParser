@@ -17,7 +17,7 @@ namespace OpenParser.Subscribers
         private bool Enabled { get; set; }
         private ISubscriberStrategy<T> Strategy { get; }
 
-        public event EventHandler<T> Received;
+        public event EventHandler<T> Matched;
 
         public void Enable()
         {
@@ -36,12 +36,12 @@ namespace OpenParser.Subscribers
 
             foreach (var entry in logEntries)
                 if (Strategy.IsMatch(entry))
-                    TriggerReceived(Strategy.GetResult(entry));
+                    TriggerMatched(Strategy.GetResult(entry));
         }
 
-        private void TriggerReceived(T response)
+        private void TriggerMatched(T response)
         {
-            Received?.Invoke(this, response);
+            Matched?.Invoke(this, response);
         }
     }
 }

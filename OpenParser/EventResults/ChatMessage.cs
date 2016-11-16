@@ -1,8 +1,8 @@
 ﻿namespace OpenParser.EventResults
 {
-    public class Tell
+    public class ChatMessage
     {
-        public Tell(LogEntry entry, string from, string message)
+        public ChatMessage(LogEntry entry, string from, string message)
         {
             LogEntry = entry;
             From = from;

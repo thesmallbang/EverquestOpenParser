@@ -1,37 +1,17 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.EventResults;
 using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
 {
-    public class DeathSubscription : ISubscription
+    public class DeathSubscription : Subscription<Combat<EmptyInfo>>
     {
         public DeathSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Combat<EmptyInfo>>(logFile,
                 new RegexStrategy<Combat<EmptyInfo>>(Combat.DeathRegex, HandleMatches));
-            Subscriber.Received += Subscriber_Received;
-        }
-
-        private Subscriber<Combat<EmptyInfo>> Subscriber { get; }
-
-        public void Enable()
-        {
-            Subscriber.Enable();
-        }
-
-        public void Disable()
-        {
-            Subscriber.Disable();
-        }
-
-        public event EventHandler<Combat<EmptyInfo>> DeathReceived;
-
-        private void Subscriber_Received(object sender, Combat<EmptyInfo> e)
-        {
-            DeathReceived?.Invoke(sender, e);
+            Subscriber.Matched += Subscriber_Matched;
         }
 
         private Combat<EmptyInfo> HandleMatches(LogEntry entry, Match match)

@@ -7,6 +7,6 @@ namespace OpenParser.Subscribers
         void Disable();
         void Enable();
 
-        event EventHandler<T> Received;
+        event EventHandler<T> Matched;
     }
 }

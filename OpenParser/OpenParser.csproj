@@ -54,7 +54,7 @@
     <Compile Include="EventResults\MeleeDamageInfo.cs" />
     <Compile Include="EventResults\Empty.cs" />
     <Compile Include="EventResults\Say.cs" />
-    <Compile Include="EventResults\Tell.cs" />
+    <Compile Include="EventResults\ChatMessage.cs" />
     <Compile Include="Subscribers\FactionSubscription.cs" />
     <Compile Include="Subscribers\ISubscriber.cs" />
     <Compile Include="LogEntry.cs" />
@@ -72,7 +72,9 @@
     <Compile Include="Subscribers\Strategies\RegexStrategy.cs" />
     <Compile Include="Subscribers\SaySubscription.cs" />
     <Compile Include="Subscribers\DeathSubscription.cs" />
+    <Compile Include="Subscribers\Subscription.cs" />
     <Compile Include="Subscribers\SubscriptionWrapper.cs" />
+    <Compile Include="Subscribers\ShoutSubscription.cs" />
     <Compile Include="Subscribers\TellSubscription.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

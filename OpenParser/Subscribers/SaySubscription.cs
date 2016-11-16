@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.Enums;
 using OpenParser.EventResults;
@@ -7,42 +6,28 @@ using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
 {
-    public class SaySubscription : ISubscription
+    public class SaySubscription : Subscription<Say>
     {
         public SaySubscription(LogFile logFile)
         {
             OriginCheck = SayOrigins.Npc | SayOrigins.Player | SayOrigins.Unknown;
             Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Chat.SayRegex, HandleMatches));
-            Subscriber.Received += Subscriber_Received;
+            Subscriber.Matched += Subscriber_Matched;
         }
 
         public SaySubscription(LogFile logFile, SayOrigins originOptions)
         {
             OriginCheck = originOptions;
             Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Chat.SayRegex, HandleMatches));
-            Subscriber.Received += Subscriber_Received;
+            Subscriber.Matched += Subscriber_Matched;
         }
 
         public SayOrigins OriginCheck { get; set; }
 
-        private Subscriber<Say> Subscriber { get; }
-
-        public void Enable()
-        {
-            Subscriber.Enable();
-        }
-
-        public void Disable()
-        {
-            Subscriber.Disable();
-        }
-
-        public event EventHandler<Say> SayReceived;
-
-        private void Subscriber_Received(object sender, Say e)
+        protected override void Subscriber_Matched(object sender, Say e)
         {
             if (OriginCheck.HasFlag(e.Origin))
-                SayReceived?.Invoke(sender, e);
+                base.Subscriber_Matched(sender, e);
         }
 
         private Say HandleMatches(LogEntry entry, Match match)

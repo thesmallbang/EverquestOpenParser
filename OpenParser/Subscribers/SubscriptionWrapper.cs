@@ -14,27 +14,27 @@ namespace OpenParser.Subscribers
         public SubscriptionWrapper(LogFile logFile)
         {
             var tellSubscription = new TellSubscription(logFile);
-            tellSubscription.TellReceived += TellSubscription_TellReceived;
+            tellSubscription.Matched += TellSubscription_TellReceived;
             Subscriptions.Add(tellSubscription);
 
             var saySubscription = new SaySubscription(logFile);
-            saySubscription.SayReceived += SaySubscription_SayReceived;
+            saySubscription.Matched += SaySubscription_SayReceived;
             Subscriptions.Add(saySubscription);
 
             var factionSubscription = new FactionSubscription(logFile);
-            factionSubscription.FactionReceived += FactionSubscription_FactionReceived;
+            factionSubscription.Matched += FactionSubscription_FactionReceived;
             Subscriptions.Add(factionSubscription);
 
             var physicalHitSubscription = new PhysicalHitSubscription(logFile);
-            physicalHitSubscription.HitReceived += PhysicalHitSubscription_HitReceived;
+            physicalHitSubscription.Matched += PhysicalHitSubscription_HitReceived;
             Subscriptions.Add(physicalHitSubscription);
 
             var physicalMissSubscription = new PhysicalMissSubscription(logFile);
-            physicalMissSubscription.MissReceived += PhysicalMissSubscription_MissReceived;
+            physicalMissSubscription.Matched += PhysicalMissSubscription_MissReceived;
 
             //add death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
-            deathSubscription.DeathReceived += DeathSubscription_DeathReceived;
+            deathSubscription.Matched += DeathSubscription_DeathReceived;
             Subscriptions.Add(deathSubscription);
         }
 
