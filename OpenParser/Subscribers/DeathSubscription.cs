@@ -11,7 +11,7 @@ namespace OpenParser.Subscribers
         {
             Subscriber = new Subscriber<Combat<EmptyInfo>>(logFile,
                 new RegexStrategy<Combat<EmptyInfo>>(Combat.DeathRegex, HandleMatches));
-            Subscriber.Matched += Subscriber_Matched;
+            Subscribe();
         }
 
         private Combat<EmptyInfo> HandleMatches(LogEntry entry, Match match)

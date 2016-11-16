@@ -11,7 +11,7 @@ namespace OpenParser.Subscribers
         {
             Subscriber = new Subscriber<Combat<MeleeMissInfo>>(logFile,
                 new RegexStrategy<Combat<MeleeMissInfo>>(Combat.MissRegex, HandleMatches));
-            Subscriber.Matched += Subscriber_Matched;
+            Subscribe();
         }
 
 
