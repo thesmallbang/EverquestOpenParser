@@ -14,27 +14,35 @@ namespace OpenParser.Subscribers
         public SubscriptionWrapper(LogFile logFile)
         {
             var tellSubscription = new TellSubscription(logFile);
-            tellSubscription.Matched += TellSubscription_TellReceived;
+            tellSubscription.Matched += TellSubscription_Matched;
             Subscriptions.Add(tellSubscription);
 
             var saySubscription = new SaySubscription(logFile);
-            saySubscription.Matched += SaySubscription_SayReceived;
+            saySubscription.Matched += SaySubscription_Matched;
             Subscriptions.Add(saySubscription);
 
+            var shoutSubscription = new ShoutSubscription(logFile);
+            shoutSubscription.Matched += ShoutSubscription_Matched;
+            Subscriptions.Add(shoutSubscription);
+
+            var oocSubscription = new OocSubscription(logFile);
+            oocSubscription.Matched += OocSubscription_Matched;
+            Subscriptions.Add(oocSubscription);
+
             var factionSubscription = new FactionSubscription(logFile);
-            factionSubscription.Matched += FactionSubscription_FactionReceived;
+            factionSubscription.Matched += FactionSubscription_Matched;
             Subscriptions.Add(factionSubscription);
 
             var physicalHitSubscription = new PhysicalHitSubscription(logFile);
-            physicalHitSubscription.Matched += PhysicalHitSubscription_HitReceived;
+            physicalHitSubscription.Matched += PhysicalHitSubscription_Matched;
             Subscriptions.Add(physicalHitSubscription);
 
             var physicalMissSubscription = new PhysicalMissSubscription(logFile);
-            physicalMissSubscription.Matched += PhysicalMissSubscription_MissReceived;
+            physicalMissSubscription.Matched += PhysicalMissSubscription_Matched;
 
             //add death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
-            deathSubscription.Matched += DeathSubscription_DeathReceived;
+            deathSubscription.Matched += DeathSubscription_Matched;
             Subscriptions.Add(deathSubscription);
         }
 
@@ -53,23 +61,37 @@ namespace OpenParser.Subscribers
                 subscription.Disable();
         }
 
-        public event EventHandler<Tell> OnTell;
+        public event EventHandler<ChatMessage> OnTell;
 
-        private void TellSubscription_TellReceived(object sender, Tell e)
+        private void TellSubscription_Matched(object sender, ChatMessage e)
         {
             OnTell?.Invoke(sender, e);
         }
 
         public event EventHandler<Say> OnSay;
 
-        private void SaySubscription_SayReceived(object sender, Say e)
+        private void SaySubscription_Matched(object sender, Say e)
         {
             OnSay?.Invoke(sender, e);
         }
 
+        public event EventHandler<ChatMessage> OnShout;
+
+        private void ShoutSubscription_Matched(object sender, ChatMessage e)
+        {
+            OnShout?.Invoke(sender, e);
+        }
+
+        public event EventHandler<ChatMessage> OnOoc;
+
+        private void OocSubscription_Matched(object sender, ChatMessage e)
+        {
+            OnOoc?.Invoke(sender, e);
+        }
+
         public event EventHandler<Faction> OnFaction;
 
-        private void FactionSubscription_FactionReceived(object sender, Faction e)
+        private void FactionSubscription_Matched(object sender, Faction e)
         {
             OnFaction?.Invoke(sender, e);
         }
@@ -77,21 +99,21 @@ namespace OpenParser.Subscribers
 
         public event EventHandler<Combat<MeleeDamageInfo>> OnPhsyicalHit;
 
-        private void PhysicalHitSubscription_HitReceived(object sender, Combat<MeleeDamageInfo> e)
+        private void PhysicalHitSubscription_Matched(object sender, Combat<MeleeDamageInfo> e)
         {
             OnPhsyicalHit?.Invoke(sender, e);
         }
 
         public event EventHandler<Combat<MeleeMissInfo>> OnPhysicalMiss;
 
-        private void PhysicalMissSubscription_MissReceived(object sender, Combat<MeleeMissInfo> e)
+        private void PhysicalMissSubscription_Matched(object sender, Combat<MeleeMissInfo> e)
         {
             OnPhysicalMiss?.Invoke(sender, e);
         }
 
         public event EventHandler<Combat<EmptyInfo>> OnDeath;
 
-        private void DeathSubscription_DeathReceived(object sender, Combat<EmptyInfo> e)
+        private void DeathSubscription_Matched(object sender, Combat<EmptyInfo> e)
         {
             OnDeath?.Invoke(sender, e);
         }

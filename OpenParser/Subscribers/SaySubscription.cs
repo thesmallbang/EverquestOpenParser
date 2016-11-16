@@ -33,8 +33,8 @@ namespace OpenParser.Subscribers
         private Say HandleMatches(LogEntry entry, Match match)
         {
             var from = match.Groups[1].Value;
-            var originCheck = match.Groups[2].Value;
-            var message = match.Groups[3].Value;
+            var originCheck = match.Groups[3].Value;
+            var message = match.Groups[4].Value;
 
             var origin = SayOrigins.Player;
 
