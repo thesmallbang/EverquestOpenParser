@@ -7,6 +7,7 @@ There are some other libraries out for parsing the EQ logs but I personally did 
 
 #I want to create an application. How do I use this library?#
 
+Nuget: https://www.nuget.org/packages/EverquestOpenParser
 
 ### Simple: Event Wrapper ###
 While less flexible than other methods this implementation of the library contains a quick way to jump in and test the library with your idea.
