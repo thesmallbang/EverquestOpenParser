@@ -13,5 +13,7 @@
         public const string MissRegex = @"\A(.+?) (tries|try) to (\w+) (.+?), but ((.+?) (\w+)|(\w+))!$";
 
         public const string DeathRegex = @"\A(.+?) (have|has) (been slain by|slain) (.+?)!$";
+
+        public const string DotRegex = @"\A(.+?) (have|has) taken (\d+) damage from (your|.+) (by?)\ ?(.+).$";
     }
 }

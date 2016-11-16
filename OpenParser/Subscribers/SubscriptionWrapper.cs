@@ -33,6 +33,9 @@ namespace OpenParser.Subscribers
             groupChatSubscription.Matched += GroupChatSubscription_Matched;
             Subscriptions.Add(groupChatSubscription);
 
+            var guildChatSubscription = new GuildChatSubscription(logFile);
+            guildChatSubscription.Matched += GuildChatSubscription_Matched;
+
             var factionSubscription = new FactionSubscription(logFile);
             factionSubscription.Matched += FactionSubscription_Matched;
             Subscriptions.Add(factionSubscription);
@@ -43,6 +46,7 @@ namespace OpenParser.Subscribers
 
             var physicalMissSubscription = new PhysicalMissSubscription(logFile);
             physicalMissSubscription.Matched += PhysicalMissSubscription_Matched;
+
 
             //add death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
@@ -98,6 +102,13 @@ namespace OpenParser.Subscribers
         private void GroupChatSubscription_Matched(object sender, ChatMessage e)
         {
             OnGroupChat?.Invoke(sender, e);
+        }
+
+        public event EventHandler<ChatMessage> OnGuildChat;
+
+        private void GuildChatSubscription_Matched(object sender, ChatMessage e)
+        {
+            OnGuildChat?.Invoke(sender, e);
         }
 
         public event EventHandler<Faction> OnFaction;
