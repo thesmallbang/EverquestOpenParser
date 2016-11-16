@@ -5,21 +5,22 @@ using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers
 {
-    public class TellSubscription : Subscription<ChatMessage>
+    public class TellSubscription : Subscription<Tell>
     {
         public TellSubscription(LogFile logFile)
         {
-            Subscriber = new Subscriber<ChatMessage>(logFile,
-                new RegexStrategy<ChatMessage>(Chat.TellRegex, HandleMatches));
+            Subscriber = new Subscriber<Tell>(logFile,
+                new RegexStrategy<Tell>(Chat.TellRegex, HandleMatches));
             Subscribe();
         }
 
-        private ChatMessage HandleMatches(LogEntry entry, Match match)
+        private Tell HandleMatches(LogEntry entry, Match match)
         {
             var from = match.Groups[1].Value;
-            var message = match.Groups[2].Value;
+            var to = match.Groups[3].Value;
+            var message = match.Groups[5].Value;
 
-            return new ChatMessage(entry, from, message);
+            return new Tell(entry, from, to, message);
         }
     }
 }

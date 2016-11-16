@@ -55,12 +55,14 @@
     <Compile Include="EventResults\Empty.cs" />
     <Compile Include="EventResults\Say.cs" />
     <Compile Include="EventResults\ChatMessage.cs" />
+    <Compile Include="EventResults\Tell.cs" />
     <Compile Include="Subscribers\FactionSubscription.cs" />
     <Compile Include="Subscribers\ISubscriber.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="LogFile.cs" />
     <Compile Include="ParseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subscribers\GroupChatSubscription.cs" />
     <Compile Include="Subscribers\PhysicalMissSubscription.cs" />
     <Compile Include="Subscribers\PhysicalHitSubscription.cs" />
     <Compile Include="Subscribers\Strategies\LogCheckStrategy.cs" />

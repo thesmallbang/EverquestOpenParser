@@ -29,6 +29,10 @@ namespace OpenParser.Subscribers
             oocSubscription.Matched += OocSubscription_Matched;
             Subscriptions.Add(oocSubscription);
 
+            var groupChatSubscription = new GroupChatSubscription(logFile);
+            groupChatSubscription.Matched += GroupChatSubscription_Matched;
+            Subscriptions.Add(groupChatSubscription);
+
             var factionSubscription = new FactionSubscription(logFile);
             factionSubscription.Matched += FactionSubscription_Matched;
             Subscriptions.Add(factionSubscription);
@@ -87,6 +91,13 @@ namespace OpenParser.Subscribers
         private void OocSubscription_Matched(object sender, ChatMessage e)
         {
             OnOoc?.Invoke(sender, e);
+        }
+
+        public event EventHandler<ChatMessage> OnGroupChat;
+
+        private void GroupChatSubscription_Matched(object sender, ChatMessage e)
+        {
+            OnGroupChat?.Invoke(sender, e);
         }
 
         public event EventHandler<Faction> OnFaction;
