@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenParser.EventResults;
+using OpenParser.EventResults.Chat;
+using OpenParser.EventResults.Combat;
 
 namespace OpenParser.Subscribers
 {
@@ -35,6 +37,11 @@ namespace OpenParser.Subscribers
 
             var guildChatSubscription = new GuildChatSubscription(logFile);
             guildChatSubscription.Matched += GuildChatSubscription_Matched;
+            Subscriptions.Add(guildChatSubscription);
+
+            var channelSubscription = new ChannelSubscription(logFile);
+            channelSubscription.Matched += ChannelSubscription_Matched;
+            Subscriptions.Add(channelSubscription);
 
             var factionSubscription = new FactionSubscription(logFile);
             factionSubscription.Matched += FactionSubscription_Matched;
@@ -109,6 +116,13 @@ namespace OpenParser.Subscribers
         private void GuildChatSubscription_Matched(object sender, ChatMessage e)
         {
             OnGuildChat?.Invoke(sender, e);
+        }
+
+        public event EventHandler<ChannelMessage> OnChannelMessage;
+
+        private void ChannelSubscription_Matched(object sender, ChannelMessage e)
+        {
+            OnChannelMessage?.Invoke(sender, e);
         }
 
         public event EventHandler<Faction> OnFaction;
