@@ -63,10 +63,15 @@ namespace OpenParser.Subscriptions
             var fizzleSubscription = new FizzleSubscription(logFile);
             fizzleSubscription.Matched += FizzleSubscription_Matched;
 
+            var spellWornSubscription = new WornOffSubscription(logFile);
+            spellWornSubscription.Matched += SpellWornSubscription_Matched;
             var dotSubscription = new DotSubscription(logFile);
             dotSubscription.Matched += DotSubscription_Matched;
             Subscriptions.Add(dotSubscription);
 
+
+            var experienceSubscription = new ExperienceSubscription(logFile);
+            experienceSubscription.Matched += ExperienceSubscription_Matched;
 
             //create death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
@@ -180,6 +185,21 @@ namespace OpenParser.Subscriptions
         {
             OnPhysicalMiss?.Invoke(sender, e);
         }
+
+        public event EventHandler<string> OnSpellWorn;
+
+        private void SpellWornSubscription_Matched(object sender, string e)
+        {
+            OnSpellWorn?.Invoke(sender, e);
+        }
+
+        public event EventHandler<Experience> OnExperience;
+
+        private void ExperienceSubscription_Matched(object sender, Experience e)
+        {
+            OnExperience?.Invoke(sender, e);
+        }
+
 
         public event EventHandler<Combat<EmptyInfo>> OnDeath;
 

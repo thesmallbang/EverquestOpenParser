@@ -70,6 +70,7 @@
     <Compile Include="ParseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscriptions\Chat\GroupChatSubscription.cs" />
+    <Compile Include="Subscriptions\Spell\WornOffSubscription.cs" />
     <Compile Include="Subscriptions\Spell\FizzleSubscription.cs" />
     <Compile Include="Subscriptions\Spell\DotSubscription.cs" />
     <Compile Include="Subscriptions\Melee\PhysicalMissSubscription.cs" />
