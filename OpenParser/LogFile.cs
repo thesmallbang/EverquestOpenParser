@@ -113,7 +113,11 @@ namespace OpenParser
 
         private IEnumerable<LogEntry> GetEntries()
         {
-            var changes = File.ReadLines(Path).Skip(LastLineNumber).Select(LogEntry.Create);
+            var changes =
+                File.ReadLines(Path)
+                    .Skip(LastLineNumber)
+                    .Select(LogEntry.Create)
+                    .Where(o => !string.IsNullOrEmpty(o.Raw));
 
             return changes;
         }
