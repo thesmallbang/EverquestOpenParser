@@ -8,5 +8,7 @@
         public const string ExperienceRegex = @"\AYou gain (?:(party) )?experience!!$";
 
         public const string SpellWoreRegex = @"\AYour (.+?) spell has worn off.$";
+
+        public const string SystemMessageRegex = @"\A<SYSTEMWIDE_MESSAGE>: (.+?)$";
     }
 }
