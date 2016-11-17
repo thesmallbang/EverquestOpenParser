@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using OpenParser.EventResults.Chat;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Chat
@@ -11,7 +12,7 @@ namespace OpenParser.Subscriptions.Chat
         public ChannelSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<ChannelMessage>(logFile,
-                new RegexStrategy<ChannelMessage>(Constants.Chat.ChannelRegex, HandleMatches));
+                new RegexStrategy<ChannelMessage>(CompiledRegex.ChannelRegex, HandleMatches));
             Subscribe();
         }
 
@@ -19,7 +20,7 @@ namespace OpenParser.Subscriptions.Chat
         {
             ChannelFilters = new List<string> {channel};
             Subscriber = new Subscriber<ChannelMessage>(logFile,
-                new RegexStrategy<ChannelMessage>(Constants.Chat.ChannelRegex, HandleMatches));
+                new RegexStrategy<ChannelMessage>(CompiledRegex.ChannelRegex, HandleMatches));
             Subscribe();
         }
 
@@ -27,7 +28,7 @@ namespace OpenParser.Subscriptions.Chat
         {
             ChannelFilters = channels;
             Subscriber = new Subscriber<ChannelMessage>(logFile,
-                new RegexStrategy<ChannelMessage>(Constants.Chat.ChannelRegex, HandleMatches));
+                new RegexStrategy<ChannelMessage>(CompiledRegex.ChannelRegex, HandleMatches));
             Subscribe();
         }
 

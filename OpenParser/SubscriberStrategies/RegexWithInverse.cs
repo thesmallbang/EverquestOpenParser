@@ -5,7 +5,7 @@ namespace OpenParser.SubscriberStrategies
 {
     public class RegexWithInverseStrategy<T> : RegexStrategy<T>
     {
-        public RegexWithInverseStrategy(string regex, string inverseRegex, Func<LogEntry, Match, T> resultHandler)
+        public RegexWithInverseStrategy(Regex regex, Regex inverseRegex, Func<LogEntry, Match, T> resultHandler)
             : base(regex, resultHandler)
         {
             Regex = regex;
@@ -15,8 +15,8 @@ namespace OpenParser.SubscriberStrategies
 
 
         private Func<LogEntry, Match, T> ResultHandler { get; }
-        private string Regex { get; }
-        private string InverseRegex { get; }
+        private Regex Regex { get; }
+        private Regex InverseRegex { get; }
 
         public override bool IsMatch(LogEntry entry)
         {

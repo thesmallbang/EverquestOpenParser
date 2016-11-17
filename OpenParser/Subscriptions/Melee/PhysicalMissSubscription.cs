@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.EventResults.Combat;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Melee
@@ -9,7 +10,7 @@ namespace OpenParser.Subscriptions.Melee
         public PhysicalMissSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Combat<MeleeMissInfo>>(logFile,
-                new RegexStrategy<Combat<MeleeMissInfo>>(Constants.Combat.MissRegex, HandleMatches));
+                new RegexStrategy<Combat<MeleeMissInfo>>(CompiledRegex.MissRegex, HandleMatches));
             Subscribe();
         }
 

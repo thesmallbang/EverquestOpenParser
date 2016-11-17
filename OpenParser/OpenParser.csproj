@@ -40,9 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\Combat.cs" />
-    <Compile Include="Constants\Chat.cs" />
-    <Compile Include="Constants\Misc.cs" />
+    <Compile Include="Filters\Misc.cs" />
+    <Compile Include="Filters\CompiledRegex.cs" />
     <Compile Include="Enums\FactionChanges.cs" />
     <Compile Include="Enums\SayOrigins.cs" />
     <Compile Include="EventResults\Combat\Combat.cs" />

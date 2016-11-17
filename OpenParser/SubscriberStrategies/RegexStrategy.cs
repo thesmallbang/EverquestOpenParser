@@ -5,7 +5,7 @@ namespace OpenParser.SubscriberStrategies
 {
     public class RegexStrategy<T> : ISubscriberStrategy<T>
     {
-        public RegexStrategy(string regex, Func<LogEntry, Match, T> resultHandler)
+        public RegexStrategy(Regex regex, Func<LogEntry, Match, T> resultHandler)
         {
             Regex = regex;
             ResultHandler = resultHandler;
@@ -13,7 +13,7 @@ namespace OpenParser.SubscriberStrategies
 
 
         private Func<LogEntry, Match, T> ResultHandler { get; }
-        private string Regex { get; }
+        private Regex Regex { get; }
 
         public virtual bool IsMatch(LogEntry entry)
         {

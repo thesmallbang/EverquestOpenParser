@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Spell
@@ -9,7 +9,7 @@ namespace OpenParser.Subscriptions.Spell
         public WornOffSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<string>(logFile,
-                new RegexStrategy<string>(Misc.SpellWoreRegex, HandleMatches));
+                new RegexStrategy<string>(CompiledRegex.SpellWoreRegex, HandleMatches));
             Subscribe();
         }
 

@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions
@@ -9,7 +9,7 @@ namespace OpenParser.Subscriptions
         public SystemMessageSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<string>(logFile,
-                new RegexStrategy<string>(Misc.SystemMessageRegex, HandleMatches));
+                new RegexStrategy<string>(CompiledRegex.SystemMessageRegex, HandleMatches));
             Subscribe();
         }
 

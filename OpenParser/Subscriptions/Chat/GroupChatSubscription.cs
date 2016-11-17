@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.EventResults.Chat;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Chat
@@ -9,7 +10,7 @@ namespace OpenParser.Subscriptions.Chat
         public GroupChatSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<ChatMessage>(logFile,
-                new RegexStrategy<ChatMessage>(Constants.Chat.GroupRegex, HandleMatches));
+                new RegexStrategy<ChatMessage>(CompiledRegex.GroupRegex, HandleMatches));
             Subscribe();
         }
 

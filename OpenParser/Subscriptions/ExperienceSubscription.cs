@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
 using OpenParser.EventResults;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions
@@ -10,7 +10,7 @@ namespace OpenParser.Subscriptions
         public ExperienceSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Experience>(logFile,
-                new RegexStrategy<Experience>(Misc.ExperienceRegex, HandleMatches));
+                new RegexStrategy<Experience>(CompiledRegex.ExperienceRegex, HandleMatches));
             Subscribe();
         }
 

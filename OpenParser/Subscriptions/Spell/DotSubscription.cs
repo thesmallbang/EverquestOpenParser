@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
 using OpenParser.EventResults.Combat;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Spell
@@ -10,7 +10,7 @@ namespace OpenParser.Subscriptions.Spell
         public DotSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Combat<SpellDamageInfo>>(logFile,
-                new RegexStrategy<Combat<SpellDamageInfo>>(Combat.DamageRegex, HandleMatches));
+                new RegexStrategy<Combat<SpellDamageInfo>>(CompiledRegex.DamageRegex, HandleMatches));
             Subscribe();
         }
 

@@ -1,5 +1,5 @@
-﻿using OpenParser.Constants;
-using OpenParser.EventResults;
+﻿using OpenParser.EventResults;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Spell
@@ -9,7 +9,7 @@ namespace OpenParser.Subscriptions.Spell
         public FizzleSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Empty>(logFile,
-                new LogCheckStrategy<Empty>(o => o.Text == Combat.FizzleCheck, HandleMatches));
+                new LogCheckStrategy<Empty>(o => o.Text == Misc.FizzleCheck, HandleMatches));
             Subscribe();
         }
 

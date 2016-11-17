@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
 using OpenParser.EventResults;
 using OpenParser.EventResults.Combat;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions
@@ -11,7 +11,7 @@ namespace OpenParser.Subscriptions
         public DeathSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Combat<EmptyInfo>>(logFile,
-                new RegexStrategy<Combat<EmptyInfo>>(Combat.DeathRegex, HandleMatches));
+                new RegexStrategy<Combat<EmptyInfo>>(CompiledRegex.DeathRegex, HandleMatches));
             Subscribe();
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
 using OpenParser.Enums;
 using OpenParser.EventResults;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions
@@ -12,14 +12,16 @@ namespace OpenParser.Subscriptions
         {
             FactionCheck = FactionChanges.Unknown | FactionChanges.Decrease | FactionChanges.Increase |
                            FactionChanges.MaxNegative | FactionChanges.MaxPositive;
-            Subscriber = new Subscriber<Faction>(logFile, new RegexStrategy<Faction>(Misc.FactionRegex, HandleMatches));
+            Subscriber = new Subscriber<Faction>(logFile,
+                new RegexStrategy<Faction>(CompiledRegex.FactionRegex, HandleMatches));
             Subscriber.Matched += Subscriber_Matched;
         }
 
         public FactionSubscription(LogFile logFile, FactionChanges factionChanges)
         {
             FactionCheck = factionChanges;
-            Subscriber = new Subscriber<Faction>(logFile, new RegexStrategy<Faction>(Misc.FactionRegex, HandleMatches));
+            Subscriber = new Subscriber<Faction>(logFile,
+                new RegexStrategy<Faction>(CompiledRegex.FactionRegex, HandleMatches));
             Subscriber.Matched += Subscriber_Matched;
         }
 

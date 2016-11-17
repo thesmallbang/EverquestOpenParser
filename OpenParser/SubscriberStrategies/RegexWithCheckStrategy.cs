@@ -5,7 +5,7 @@ namespace OpenParser.SubscriberStrategies
 {
     public class RegexWithCheckStrategy<T> : RegexStrategy<T>
     {
-        public RegexWithCheckStrategy(string regex, Func<LogEntry, bool> check, Func<LogEntry, Match, T> resultHandler)
+        public RegexWithCheckStrategy(Regex regex, Func<LogEntry, bool> check, Func<LogEntry, Match, T> resultHandler)
             : base(regex, resultHandler)
         {
             Regex = regex;
@@ -15,7 +15,7 @@ namespace OpenParser.SubscriberStrategies
 
 
         private Func<LogEntry, Match, T> ResultHandler { get; }
-        private string Regex { get; }
+        private Regex Regex { get; }
         private Func<LogEntry, bool> Check { get; }
 
         public override bool IsMatch(LogEntry entry)

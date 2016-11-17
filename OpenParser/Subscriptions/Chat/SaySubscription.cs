@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Enums;
 using OpenParser.EventResults.Chat;
+using OpenParser.Filters;
 using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Chat
@@ -10,14 +11,14 @@ namespace OpenParser.Subscriptions.Chat
         public SaySubscription(LogFile logFile)
         {
             OriginCheck = SayOrigins.Npc | SayOrigins.Player | SayOrigins.Unknown;
-            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Constants.Chat.SayRegex, HandleMatches));
+            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(CompiledRegex.SayRegex, HandleMatches));
             Subscriber.Matched += Subscriber_Matched;
         }
 
         public SaySubscription(LogFile logFile, SayOrigins originOptions)
         {
             OriginCheck = originOptions;
-            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Constants.Chat.SayRegex, HandleMatches));
+            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(CompiledRegex.SayRegex, HandleMatches));
             Subscriber.Matched += Subscriber_Matched;
         }
 

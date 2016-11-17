@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using OpenParser.Constants;
 
 namespace OpenParser
 {
@@ -20,16 +19,16 @@ namespace OpenParser
             return entry.StartsWith("[") ? entry.Substring(27) : entry;
         }
 
-        public static bool IsRegexMatch(this string entry, string regex)
+        public static bool IsRegexMatch(this string entry, Regex regex)
         {
-            var m = Regex.Match(entry, regex, RegexOptions.IgnoreCase);
+            var m = regex.Match(entry);
             return m.Success;
         }
 
 
-        public static Match RegexMatches(this string entry, string regex)
+        public static Match RegexMatches(this string entry, Regex regex)
         {
-            var matches = Regex.Match(entry, regex, RegexOptions.IgnoreCase);
+            var matches = regex.Match(entry);
             return matches;
         }
 
@@ -44,10 +43,6 @@ namespace OpenParser
             return text;
         }
 
-        public static bool IsPlayerMessage(this string text)
-        {
-            return text.IsRegexMatch("FIXME") || text.IsRegexMatch(Chat.TellRegex);
-        }
 
         public static string GetRightText(this string text, string lookFor)
         {
