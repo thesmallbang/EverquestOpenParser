@@ -1,25 +1,23 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
 using OpenParser.Enums;
-using OpenParser.EventResults;
 using OpenParser.EventResults.Chat;
 using OpenParser.Subscribers.Strategies;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscribers.Chat
 {
     public class SaySubscription : Subscription<Say>
     {
         public SaySubscription(LogFile logFile)
         {
             OriginCheck = SayOrigins.Npc | SayOrigins.Player | SayOrigins.Unknown;
-            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Chat.SayRegex, HandleMatches));
+            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Constants.Chat.SayRegex, HandleMatches));
             Subscriber.Matched += Subscriber_Matched;
         }
 
         public SaySubscription(LogFile logFile, SayOrigins originOptions)
         {
             OriginCheck = originOptions;
-            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Chat.SayRegex, HandleMatches));
+            Subscriber = new Subscriber<Say>(logFile, new RegexStrategy<Say>(Constants.Chat.SayRegex, HandleMatches));
             Subscriber.Matched += Subscriber_Matched;
         }
 

@@ -1,17 +1,15 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
-using OpenParser.EventResults;
 using OpenParser.EventResults.Combat;
 using OpenParser.Subscribers.Strategies;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscribers.Melee
 {
     public class PhysicalHitSubscription : Subscription<Combat<MeleeDamageInfo>>
     {
         public PhysicalHitSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<Combat<MeleeDamageInfo>>(logFile,
-                new RegexStrategy<Combat<MeleeDamageInfo>>(Combat.DamageRegex, HandleMatches));
+                new RegexStrategy<Combat<MeleeDamageInfo>>(Constants.Combat.DamageRegex, HandleMatches));
             Subscribe();
         }
 

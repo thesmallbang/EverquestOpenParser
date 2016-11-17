@@ -1,10 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
-using OpenParser.EventResults;
 using OpenParser.EventResults.Combat;
 using OpenParser.Subscribers.Strategies;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscribers.Spell
 {
     public class DotSubscription : Subscription<Combat<DotDamageInfo>>
     {

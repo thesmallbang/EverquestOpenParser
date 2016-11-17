@@ -1,24 +1,22 @@
 ﻿using System.Text.RegularExpressions;
-using OpenParser.Constants;
-using OpenParser.EventResults;
 using OpenParser.EventResults.Chat;
 using OpenParser.Subscribers.Strategies;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscribers.Chat
 {
-    public class GroupChatSubscription : Subscription<ChatMessage>
+    public class ShoutSubscription : Subscription<ChatMessage>
     {
-        public GroupChatSubscription(LogFile logFile)
+        public ShoutSubscription(LogFile logFile)
         {
             Subscriber = new Subscriber<ChatMessage>(logFile,
-                new RegexStrategy<ChatMessage>(Chat.GroupRegex, HandleMatches));
+                new RegexStrategy<ChatMessage>(Constants.Chat.ShoutRegex, HandleMatches));
             Subscribe();
         }
 
         private ChatMessage HandleMatches(LogEntry entry, Match match)
         {
             var from = match.Groups[1].Value;
-            var message = match.Groups[6].Value;
+            var message = match.Groups[4].Value;
 
             return new ChatMessage(entry, from, message);
         }
