@@ -1,4 +1,4 @@
-﻿namespace OpenParser.Subscribers
+﻿namespace OpenParser
 {
     public interface ISubscriberStrategy<T>
     {

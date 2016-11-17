@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.EventResults.Combat;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers.Melee
+namespace OpenParser.Subscriptions.Melee
 {
     public class PhysicalHitSubscription : Subscription<Combat<MeleeDamageInfo>>
     {

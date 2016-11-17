@@ -2,9 +2,9 @@
 using OpenParser.Constants;
 using OpenParser.EventResults;
 using OpenParser.EventResults.Combat;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscriptions
 {
     public class DeathSubscription : Subscription<Combat<EmptyInfo>>
     {

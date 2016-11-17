@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Enums;
 using OpenParser.EventResults.Chat;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers.Chat
+namespace OpenParser.Subscriptions.Chat
 {
     public class SaySubscription : Subscription<Say>
     {

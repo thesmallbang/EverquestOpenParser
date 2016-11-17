@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace OpenParser.Subscribers.Strategies
+namespace OpenParser.Subscriptions.Strategies
 {
     public class RegexStrategy<T> : ISubscriberStrategy<T>
     {

@@ -2,9 +2,9 @@
 using OpenParser.Constants;
 using OpenParser.Enums;
 using OpenParser.EventResults;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscriptions
 {
     public class FactionSubscription : Subscription<Faction>
     {

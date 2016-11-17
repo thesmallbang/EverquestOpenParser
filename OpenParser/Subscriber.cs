@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OpenParser.Subscribers
+namespace OpenParser
 {
     public class Subscriber<T> : ISubscriber<T>
     {

@@ -1,4 +1,4 @@
-﻿namespace OpenParser.Subscribers
+﻿namespace OpenParser.Subscriptions
 {
     public interface ISubscription
     {

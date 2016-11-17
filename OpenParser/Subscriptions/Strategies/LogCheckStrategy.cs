@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenParser.Subscribers.Strategies
+namespace OpenParser.Subscriptions.Strategies
 {
     public class LogCheckStrategy<T> : ISubscriberStrategy<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenParser.Subscribers
+namespace OpenParser
 {
     public interface ISubscriber<T>
     {

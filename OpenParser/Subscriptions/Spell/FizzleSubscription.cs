@@ -1,8 +1,8 @@
 ﻿using OpenParser.Constants;
 using OpenParser.EventResults;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers.Spell
+namespace OpenParser.Subscriptions.Spell
 {
     public class FizzleSubscription : Subscription<Empty>
     {

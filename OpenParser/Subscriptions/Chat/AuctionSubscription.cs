@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.EventResults.Chat;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers.Chat
+namespace OpenParser.Subscriptions.Chat
 {
     public class AuctionSubscription : Subscription<ChatMessage>
     {

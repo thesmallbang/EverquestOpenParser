@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscriptions
 {
     public abstract class Subscription<TEventResult> : ISubscription
     {
@@ -16,7 +16,7 @@ namespace OpenParser.Subscribers
             Subscriber.Disable();
         }
 
-        public void Subscribe()
+        protected void Subscribe()
         {
             Subscriber.Matched += Subscriber_Matched;
         }

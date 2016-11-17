@@ -1,21 +1,21 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.EventResults.Combat;
-using OpenParser.Subscribers.Strategies;
+using OpenParser.Subscriptions.Strategies;
 
-namespace OpenParser.Subscribers.Spell
+namespace OpenParser.Subscriptions.Spell
 {
-    public class DotSubscription : Subscription<Combat<DotDamageInfo>>
+    public class DotSubscription : Subscription<Combat<SpellDamageInfo>>
     {
         public DotSubscription(LogFile logFile)
         {
-            Subscriber = new Subscriber<Combat<DotDamageInfo>>(logFile,
-                new RegexStrategy<Combat<DotDamageInfo>>(Combat.DamageRegex, HandleMatches));
+            Subscriber = new Subscriber<Combat<SpellDamageInfo>>(logFile,
+                new RegexStrategy<Combat<SpellDamageInfo>>(Combat.DamageRegex, HandleMatches));
             Subscribe();
         }
 
 
-        private Combat<DotDamageInfo> HandleMatches(LogEntry entry, Match match)
+        private Combat<SpellDamageInfo> HandleMatches(LogEntry entry, Match match)
         {
             string attacker;
             string target;
@@ -37,7 +37,7 @@ namespace OpenParser.Subscribers.Spell
             long damage;
             long.TryParse(match.Groups[3].Value, out damage);
 
-            return new Combat<DotDamageInfo>(entry, attacker, target, new DotDamageInfo(damage, damageSource));
+            return new Combat<SpellDamageInfo>(entry, attacker, target, new SpellDamageInfo(damage, damageSource));
         }
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using OpenParser.EventResults;
 using OpenParser.EventResults.Chat;
 using OpenParser.EventResults.Combat;
-using OpenParser.Subscribers.Chat;
-using OpenParser.Subscribers.Melee;
+using OpenParser.Subscriptions.Chat;
+using OpenParser.Subscriptions.Melee;
+using OpenParser.Subscriptions.Spell;
 
-namespace OpenParser.Subscribers
+namespace OpenParser.Subscriptions
 {
     public class SubscriptionWrapper : ISubscription
     {
@@ -41,6 +42,9 @@ namespace OpenParser.Subscribers
             guildChatSubscription.Matched += GuildChatSubscription_Matched;
             Subscriptions.Add(guildChatSubscription);
 
+            var auctionSubscription = new AuctionSubscription(logFile);
+            auctionSubscription.Matched += AuctionSubscription_Matched;
+
             var channelSubscription = new ChannelSubscription(logFile);
             channelSubscription.Matched += ChannelSubscription_Matched;
             Subscriptions.Add(channelSubscription);
@@ -56,6 +60,10 @@ namespace OpenParser.Subscribers
             var physicalMissSubscription = new PhysicalMissSubscription(logFile);
             physicalMissSubscription.Matched += PhysicalMissSubscription_Matched;
 
+
+            var dotSubscription = new DotSubscription(logFile);
+            dotSubscription.Matched += DotSubscription_Matched;
+            Subscriptions.Add(dotSubscription);
 
             //add death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
@@ -120,6 +128,13 @@ namespace OpenParser.Subscribers
             OnGuildChat?.Invoke(sender, e);
         }
 
+        public event EventHandler<ChatMessage> OnAuction;
+
+        private void AuctionSubscription_Matched(object sender, ChatMessage e)
+        {
+            OnAuction?.Invoke(sender, e);
+        }
+
         public event EventHandler<ChannelMessage> OnChannelMessage;
 
         private void ChannelSubscription_Matched(object sender, ChannelMessage e)
@@ -134,6 +149,12 @@ namespace OpenParser.Subscribers
             OnFaction?.Invoke(sender, e);
         }
 
+        public event EventHandler<Combat<SpellDamageInfo>> OnSpellDot;
+
+        private void DotSubscription_Matched(object sender, Combat<SpellDamageInfo> e)
+        {
+            OnSpellDot?.Invoke(sender, e);
+        }
 
         public event EventHandler<Combat<MeleeDamageInfo>> OnPhsyicalHit;
 
