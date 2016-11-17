@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.EventResults;
+using OpenParser.EventResults.Chat;
 using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers

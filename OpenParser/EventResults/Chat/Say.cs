@@ -1,6 +1,6 @@
 ﻿using OpenParser.Enums;
 
-namespace OpenParser.EventResults
+namespace OpenParser.EventResults.Chat
 {
     public class Say : ChatMessage
     {

@@ -1,4 +1,4 @@
-﻿namespace OpenParser.EventResults
+﻿namespace OpenParser.EventResults.Combat
 {
     public class MeleeMissInfo : ICombatInfo
     {

@@ -1,4 +1,4 @@
-﻿namespace OpenParser.EventResults
+﻿namespace OpenParser.EventResults.Chat
 {
     public class ChatMessage
     {

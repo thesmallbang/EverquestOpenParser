@@ -2,6 +2,7 @@
 using OpenParser.Constants;
 using OpenParser.Enums;
 using OpenParser.EventResults;
+using OpenParser.EventResults.Chat;
 using OpenParser.Subscribers.Strategies;
 
 namespace OpenParser.Subscribers

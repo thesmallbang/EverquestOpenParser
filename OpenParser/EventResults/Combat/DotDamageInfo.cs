@@ -1,8 +1,8 @@
-﻿namespace OpenParser.EventResults
+﻿namespace OpenParser.EventResults.Combat
 {
-    public class SpellDamageInfo : IDamageInfo
+    public class DotDamageInfo : IDamageInfo
     {
-        public SpellDamageInfo(long amount, string damageSource)
+        public DotDamageInfo(long amount, string damageSource)
         {
             Amount = amount;
             Spell = damageSource;
