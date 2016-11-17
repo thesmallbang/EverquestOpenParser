@@ -9,6 +9,6 @@
 
         public const string SpellWoreRegex = @"\AYour (.+?) spell has worn off.$";
 
-        public const string SystemMessageRegex = @"\A<SYSTEMWIDE_MESSAGE>: (.+?)$";
+        public const string SystemMessageRegex = @"\A<SYSTEMWIDE_MESSAGE>: ?(.+?)$";
     }
 }
