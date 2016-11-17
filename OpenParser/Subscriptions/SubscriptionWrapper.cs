@@ -186,9 +186,9 @@ namespace OpenParser.Subscriptions
             OnPhysicalMiss?.Invoke(sender, e);
         }
 
-        public event EventHandler<string> OnSpellWorn;
+        public event EventHandler<EventResult<string>> OnSpellWorn;
 
-        private void SpellWornSubscription_Matched(object sender, string e)
+        private void SpellWornSubscription_Matched(object sender, EventResult<string> e)
         {
             OnSpellWorn?.Invoke(sender, e);
         }
