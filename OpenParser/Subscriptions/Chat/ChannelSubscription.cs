@@ -9,14 +9,14 @@ namespace OpenParser.Subscriptions.Chat
 {
     public class ChannelSubscription : Subscription<ChannelMessage>
     {
-        public ChannelSubscription(LogFile logFile)
+        public ChannelSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<ChannelMessage>(logFile,
                 new RegexStrategy<ChannelMessage>(CompiledRegex.ChannelRegex, HandleMatches));
             Subscribe();
         }
 
-        public ChannelSubscription(LogFile logFile, string channel)
+        public ChannelSubscription(LogFile logFile, string channel) : base(logFile)
         {
             ChannelFilters = new List<string> {channel};
             Subscriber = new Subscriber<ChannelMessage>(logFile,
@@ -24,7 +24,7 @@ namespace OpenParser.Subscriptions.Chat
             Subscribe();
         }
 
-        public ChannelSubscription(LogFile logFile, List<string> channels)
+        public ChannelSubscription(LogFile logFile, List<string> channels) : base(logFile)
         {
             ChannelFilters = channels;
             Subscriber = new Subscriber<ChannelMessage>(logFile,
@@ -42,7 +42,7 @@ namespace OpenParser.Subscriptions.Chat
 
         private ChannelMessage HandleMatches(LogEntry entry, Match match)
         {
-            var from = match.Groups[1].Value;
+            var from = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
             var channel = match.Groups[3].Value.Trim();
             byte channelNumber;
             byte.TryParse(match.Groups[4].Value, out channelNumber);

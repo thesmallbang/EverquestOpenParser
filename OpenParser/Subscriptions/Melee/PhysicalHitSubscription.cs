@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions.Melee
 {
     public class PhysicalHitSubscription : Subscription<Combat<MeleeDamageInfo>>
     {
-        public PhysicalHitSubscription(LogFile logFile)
+        public PhysicalHitSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<Combat<MeleeDamageInfo>>(logFile,
                 new RegexStrategy<Combat<MeleeDamageInfo>>(CompiledRegex.DamageRegex, HandleMatches));
@@ -17,8 +17,8 @@ namespace OpenParser.Subscriptions.Melee
 
         private Combat<MeleeDamageInfo> HandleMatches(LogEntry entry, Match match)
         {
-            var attacker = match.Groups[1].Value;
-            var target = match.Groups[3].Value;
+            var attacker = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var target = match.Groups[3].Value.AttemptCharacterNameReplace(LogFile.Character);
             var damageType = match.Groups[2].Value;
 
             long damage;

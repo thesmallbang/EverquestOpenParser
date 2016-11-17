@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions
 {
     public class SystemMessageSubscription : Subscription<EventResult<string>>
     {
-        public SystemMessageSubscription(LogFile logFile)
+        public SystemMessageSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<EventResult<string>>(logFile,
                 new RegexStrategy<EventResult<string>>(CompiledRegex.SystemMessageRegex, HandleMatches));

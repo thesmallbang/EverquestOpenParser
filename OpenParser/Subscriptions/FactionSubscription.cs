@@ -8,7 +8,7 @@ namespace OpenParser.Subscriptions
 {
     public class FactionSubscription : Subscription<Faction>
     {
-        public FactionSubscription(LogFile logFile)
+        public FactionSubscription(LogFile logFile) : base(logFile)
         {
             FactionCheck = FactionChanges.Unknown | FactionChanges.Decrease | FactionChanges.Increase |
                            FactionChanges.MaxNegative | FactionChanges.MaxPositive;
@@ -17,7 +17,7 @@ namespace OpenParser.Subscriptions
             Subscriber.Matched += Subscriber_Matched;
         }
 
-        public FactionSubscription(LogFile logFile, FactionChanges factionChanges)
+        public FactionSubscription(LogFile logFile, FactionChanges factionChanges) : base(logFile)
         {
             FactionCheck = factionChanges;
             Subscriber = new Subscriber<Faction>(logFile,

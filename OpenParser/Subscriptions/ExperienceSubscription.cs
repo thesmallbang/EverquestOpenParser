@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions
 {
     public class ExperienceSubscription : Subscription<Experience>
     {
-        public ExperienceSubscription(LogFile logFile)
+        public ExperienceSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<Experience>(logFile,
                 new RegexStrategy<Experience>(CompiledRegex.ExperienceRegex, HandleMatches));

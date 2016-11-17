@@ -5,17 +5,17 @@ using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Spell
 {
-    public class DotSubscription : Subscription<Combat<SpellDamageInfo>>
+    public class DamageShieldSubscription : Subscription<Combat<DamageShieldInfo>>
     {
-        public DotSubscription(LogFile logFile) : base(logFile)
+        public DamageShieldSubscription(LogFile logFile) : base(logFile)
         {
-            Subscriber = new Subscriber<Combat<SpellDamageInfo>>(logFile,
-                new RegexStrategy<Combat<SpellDamageInfo>>(CompiledRegex.DamageRegex, HandleMatches));
+            Subscriber = new Subscriber<Combat<DamageShieldInfo>>(logFile,
+                new RegexStrategy<Combat<DamageShieldInfo>>(CompiledRegex.DamageRegex, HandleMatches));
             Subscribe();
         }
 
 
-        private Combat<SpellDamageInfo> HandleMatches(LogEntry entry, Match match)
+        private Combat<DamageShieldInfo> HandleMatches(LogEntry entry, Match match)
         {
             string attacker;
             string target;
@@ -37,8 +37,8 @@ namespace OpenParser.Subscriptions.Spell
             long damage;
             long.TryParse(match.Groups[3].Value, out damage);
 
-            return new Combat<SpellDamageInfo>(entry, attacker.AttemptCharacterNameReplace(LogFile.Character),
-                target.AttemptCharacterNameReplace(LogFile.Character), new SpellDamageInfo(damage, damageSource));
+            return new Combat<DamageShieldInfo>(entry, attacker.AttemptCharacterNameReplace(LogFile.Character),
+                target.AttemptCharacterNameReplace(LogFile.Character), new DamageShieldInfo(damage, damageSource, ""));
         }
     }
 }

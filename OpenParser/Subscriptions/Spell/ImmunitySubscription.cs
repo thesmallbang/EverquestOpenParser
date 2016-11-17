@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions.Spell
 {
     public class ImmunitySubscription : Subscription<EventResult<string>>
     {
-        public ImmunitySubscription(LogFile logFile)
+        public ImmunitySubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<EventResult<string>>(logFile,
                 new RegexStrategy<EventResult<string>>(CompiledRegex.SpellImmunityRegex, HandleMatches));

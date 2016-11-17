@@ -4,7 +4,13 @@ namespace OpenParser.Subscriptions
 {
     public abstract class Subscription<TEventResult> : ISubscription
     {
+        protected Subscription(LogFile logFile)
+        {
+            LogFile = logFile;
+        }
+
         protected Subscriber<TEventResult> Subscriber { get; set; }
+        protected LogFile LogFile { get; set; }
 
         public virtual void Enable()
         {

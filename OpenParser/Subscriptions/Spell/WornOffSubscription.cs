@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions.Spell
 {
     public class WornOffSubscription : Subscription<EventResult<string>>
     {
-        public WornOffSubscription(LogFile logFile)
+        public WornOffSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<EventResult<string>>(logFile,
                 new RegexStrategy<EventResult<string>>(CompiledRegex.SpellWoreRegex, HandleMatches));

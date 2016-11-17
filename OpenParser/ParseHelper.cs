@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -6,6 +7,8 @@ namespace OpenParser
 {
     public static class ParseHelper
     {
+        private static readonly List<string> LocalCharacterNames = new List<string> {"you", "your"};
+
         public static DateTime DateFromEntry(this string entry)
         {
             if (string.IsNullOrWhiteSpace(entry))
@@ -25,6 +28,10 @@ namespace OpenParser
             return m.Success;
         }
 
+        public static string AttemptCharacterNameReplace(this string name, string characterName)
+        {
+            return LocalCharacterNames.Contains(name.ToLower().Trim()) ? characterName : name.Trim();
+        }
 
         public static Match RegexMatches(this string entry, Regex regex)
         {

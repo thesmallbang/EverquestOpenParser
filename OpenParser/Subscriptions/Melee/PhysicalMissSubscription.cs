@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions.Melee
 {
     public class PhysicalMissSubscription : Subscription<Combat<MeleeMissInfo>>
     {
-        public PhysicalMissSubscription(LogFile logFile)
+        public PhysicalMissSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<Combat<MeleeMissInfo>>(logFile,
                 new RegexStrategy<Combat<MeleeMissInfo>>(CompiledRegex.MissRegex, HandleMatches));
@@ -17,8 +17,8 @@ namespace OpenParser.Subscriptions.Melee
 
         private Combat<MeleeMissInfo> HandleMatches(LogEntry entry, Match match)
         {
-            var attacker = match.Groups[1].Value;
-            var attacked = match.Groups[4].Value;
+            var attacker = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var attacked = match.Groups[4].Value.AttemptCharacterNameReplace(LogFile.Character);
 
             var attemptType = match.Groups[3].Value;
 

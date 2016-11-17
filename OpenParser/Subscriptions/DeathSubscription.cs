@@ -8,7 +8,7 @@ namespace OpenParser.Subscriptions
 {
     public class DeathSubscription : Subscription<Combat<EmptyInfo>>
     {
-        public DeathSubscription(LogFile logFile)
+        public DeathSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<Combat<EmptyInfo>>(logFile,
                 new RegexStrategy<Combat<EmptyInfo>>(CompiledRegex.DeathRegex, HandleMatches));
@@ -17,8 +17,8 @@ namespace OpenParser.Subscriptions
 
         private Combat<EmptyInfo> HandleMatches(LogEntry entry, Match match)
         {
-            var target1 = match.Groups[1].Value;
-            var target2 = match.Groups[4].Value;
+            var target1 = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var target2 = match.Groups[4].Value.AttemptCharacterNameReplace(LogFile.Character);
 
             var checkDirection = match.Groups[3].Value;
             var attacker = checkDirection.Contains("by") ? target2 : target1;

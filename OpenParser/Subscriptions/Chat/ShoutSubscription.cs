@@ -7,7 +7,7 @@ namespace OpenParser.Subscriptions.Chat
 {
     public class ShoutSubscription : Subscription<ChatMessage>
     {
-        public ShoutSubscription(LogFile logFile)
+        public ShoutSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<ChatMessage>(logFile,
                 new RegexStrategy<ChatMessage>(CompiledRegex.ShoutRegex, HandleMatches));
@@ -16,7 +16,7 @@ namespace OpenParser.Subscriptions.Chat
 
         private ChatMessage HandleMatches(LogEntry entry, Match match)
         {
-            var from = match.Groups[1].Value;
+            var from = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
             var message = match.Groups[4].Value;
 
             return new ChatMessage(entry, from, message);
