@@ -60,12 +60,15 @@ namespace OpenParser.Subscriptions
             var physicalMissSubscription = new PhysicalMissSubscription(logFile);
             physicalMissSubscription.Matched += PhysicalMissSubscription_Matched;
 
+            var fizzleSubscription = new FizzleSubscription(logFile);
+            fizzleSubscription.Matched += FizzleSubscription_Matched;
 
             var dotSubscription = new DotSubscription(logFile);
             dotSubscription.Matched += DotSubscription_Matched;
             Subscriptions.Add(dotSubscription);
 
-            //add death sub last to make sure it comes after combat subscriptions for most common use cases
+
+            //create death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
             deathSubscription.Matched += DeathSubscription_Matched;
             Subscriptions.Add(deathSubscription);
@@ -84,6 +87,14 @@ namespace OpenParser.Subscriptions
         {
             foreach (var subscription in Subscriptions)
                 subscription.Disable();
+        }
+
+
+        public event EventHandler<Empty> OnFizzle;
+
+        private void FizzleSubscription_Matched(object sender, Empty e)
+        {
+            OnFizzle?.Invoke(sender, e);
         }
 
         public event EventHandler<Tell> OnTell;

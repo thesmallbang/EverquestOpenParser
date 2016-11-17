@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.EventResults.Combat;
-using OpenParser.Subscriptions.Strategies;
+using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Melee
 {

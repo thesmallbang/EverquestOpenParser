@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Enums;
 using OpenParser.EventResults.Chat;
-using OpenParser.Subscriptions.Strategies;
+using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Chat
 {

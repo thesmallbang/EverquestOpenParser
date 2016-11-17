@@ -2,7 +2,7 @@
 using OpenParser.Constants;
 using OpenParser.Enums;
 using OpenParser.EventResults;
-using OpenParser.Subscriptions.Strategies;
+using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions
 {

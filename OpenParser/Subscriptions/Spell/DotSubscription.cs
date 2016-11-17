@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using OpenParser.Constants;
 using OpenParser.EventResults.Combat;
-using OpenParser.Subscriptions.Strategies;
+using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Spell
 {

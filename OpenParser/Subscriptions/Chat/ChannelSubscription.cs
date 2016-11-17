@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using OpenParser.EventResults.Chat;
-using OpenParser.Subscriptions.Strategies;
+using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Chat
 {

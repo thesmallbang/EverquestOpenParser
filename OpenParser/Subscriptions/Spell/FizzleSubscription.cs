@@ -1,6 +1,6 @@
 ﻿using OpenParser.Constants;
 using OpenParser.EventResults;
-using OpenParser.Subscriptions.Strategies;
+using OpenParser.SubscriberStrategies;
 
 namespace OpenParser.Subscriptions.Spell
 {
