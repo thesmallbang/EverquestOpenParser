@@ -35,6 +35,13 @@ namespace OpenParser.Filters
                 RegexOptions.Compiled)
             ;
 
+        public static Regex DamageShieldRegex { get; } =
+            new Regex(
+                @"\A(.+?) (slash|hit|kick|pierce|bash|punch|crush|bite|maul|backstab|claw|strike)(?:s|es)? (?!by non-melee)(.+?) for (\d+) points? of damage\.",
+                RegexOptions.Compiled)
+            ;
+
+
         public static Regex MissRegex { get; } =
             new Regex(@"\A(.+?) (tries|try) to (\w+) (.+?), but ((.+?) (\w+)|(\w+))!$", RegexOptions.Compiled);
 
