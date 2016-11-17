@@ -69,6 +69,8 @@ namespace OpenParser.Subscriptions
             dotSubscription.Matched += DotSubscription_Matched;
             Subscriptions.Add(dotSubscription);
 
+            var spellImmunitySubscription = new ImmunitySubscription(logFile);
+            spellImmunitySubscription.Matched += SpellImmunitySubscription_Matched;
 
             var experienceSubscription = new ExperienceSubscription(logFile);
             experienceSubscription.Matched += ExperienceSubscription_Matched;
@@ -192,6 +194,14 @@ namespace OpenParser.Subscriptions
         {
             OnSpellWorn?.Invoke(sender, e);
         }
+
+        public event EventHandler<EventResult<string>> OnImmunity;
+
+        private void SpellImmunitySubscription_Matched(object sender, EventResult<string> e)
+        {
+            OnImmunity?.Invoke(sender, e);
+        }
+
 
         public event EventHandler<Experience> OnExperience;
 

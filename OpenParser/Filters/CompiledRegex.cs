@@ -61,7 +61,10 @@ namespace OpenParser.Filters
             new Regex(@"\AYou gain (?:(party) )?experience!!$", RegexOptions.Compiled);
 
         public static Regex SpellWoreRegex { get; } =
-            new Regex(@"\AYour (.+?) spell has worn off\.$", RegexOptions.Compiled);
+            new Regex(@"\AYour (.+?) spell has worn off\.$", RegexOptions.Compiled | RegexOptions.RightToLeft);
+
+        public static Regex SpellImmunityRegex { get; } = new Regex(@"\AYour target is immune to (.+)$",
+            RegexOptions.Compiled);
 
         public static Regex SystemMessageRegex { get; } =
             new Regex(@"\A<SYSTEMWIDE_MESSAGE>: ?(.+?)$", RegexOptions.Compiled);
