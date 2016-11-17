@@ -4,7 +4,7 @@ namespace OpenParser.Filters
 {
     //switching from string to compiled regex which made more sense (seen in https://github.com/rumstil/eqlogparser/blob/master/core/LogParser.cs) 
 
-    public class CompiledRegex
+    public static class CompiledRegex
     {
         public static Regex TellRegex { get; } = new Regex(@"\A(.+?) (told|tells) (\w*?)(,?) '(.+)'$",
             RegexOptions.Compiled);
