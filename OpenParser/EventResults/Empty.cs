@@ -1,13 +1,10 @@
 ﻿namespace OpenParser.EventResults
 {
-    public class Empty
+    public class Empty : EventResult
     {
-        private Empty(LogEntry entry)
+        private Empty(LogEntry entry) : base(entry)
         {
-            LogEntry = entry;
         }
-
-        public LogEntry LogEntry { get; }
 
         public static Empty Instance(LogEntry entry) => new Empty(entry);
     }

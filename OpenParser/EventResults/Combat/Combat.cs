@@ -1,11 +1,10 @@
 ﻿namespace OpenParser.EventResults.Combat
 {
-    public class Combat<T>
+    public class Combat<T> : EventResult
         where T : ICombatInfo
     {
-        public Combat(LogEntry entry, string attacker, string target, T info)
+        public Combat(LogEntry entry, string attacker, string target, T info) : base(entry)
         {
-            LogEntry = entry;
             Attacker = attacker;
             Target = target;
             Info = info;
@@ -15,6 +14,5 @@
         public string Target { get; }
 
         public T Info { get; }
-        public LogEntry LogEntry { get; }
     }
 }

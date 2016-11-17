@@ -2,9 +2,9 @@
 
 namespace OpenParser.EventResults
 {
-    public class Faction
+    public class Faction : EventResult
     {
-        public Faction(FactionChanges change, string group, int amount)
+        public Faction(LogEntry entry, FactionChanges change, string group, int amount) : base(entry)
         {
             Change = change;
             Group = group;

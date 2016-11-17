@@ -1,8 +1,8 @@
 ﻿namespace OpenParser.EventResults.Chat
 {
-    public class ChatMessage
+    public class ChatMessage : EventResult
     {
-        public ChatMessage(LogEntry entry, string from, string message)
+        public ChatMessage(LogEntry entry, string from, string message) : base(entry)
         {
             LogEntry = entry;
             From = from;

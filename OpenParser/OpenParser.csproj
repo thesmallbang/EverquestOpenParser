@@ -47,6 +47,8 @@
     <Compile Include="Enums\SayOrigins.cs" />
     <Compile Include="EventResults\Combat\Combat.cs" />
     <Compile Include="EventResults\EmptyInfo.cs" />
+    <Compile Include="EventResults\EventResult.cs" />
+    <Compile Include="EventResults\Experience.cs" />
     <Compile Include="EventResults\Faction.cs" />
     <Compile Include="EventResults\Combat\ICombatInfo.cs" />
     <Compile Include="EventResults\Combat\IDamageInfo.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="EventResults\Chat\ChannelMessage.cs" />
     <Compile Include="EventResults\Chat\Tell.cs" />
     <Compile Include="Subscriptions\Chat\AuctionSubscription.cs" />
+    <Compile Include="Subscriptions\ExperienceSubscription.cs" />
     <Compile Include="Subscriptions\FactionSubscription.cs" />
     <Compile Include="Subscriptions\Chat\GuildChatSubscription.cs" />
     <Compile Include="ISubscriber.cs" />

@@ -47,7 +47,7 @@ namespace OpenParser.Subscriptions
                 change = match.Groups[3].Value == "" ? FactionChanges.Increase : FactionChanges.Decrease;
                 int.TryParse(match.Groups[4].Value, out amount);
             }
-            return new Faction(change, faction, amount);
+            return new Faction(entry, change, faction, amount);
         }
     }
 }
