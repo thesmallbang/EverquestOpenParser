@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using OpenParser.EventResults;
 using OpenParser.EventResults.Chat;
 using OpenParser.EventResults.Combat;
+using OpenParser.Subscribers.Chat;
+using OpenParser.Subscribers.Melee;
 
 namespace OpenParser.Subscribers
 {
@@ -10,7 +12,7 @@ namespace OpenParser.Subscribers
     {
         /// <summary>
         ///     Wrapper for using all the prebuilt subscriptions. Not recommended for performance but makes the library easier to
-        ///     use for some.
+        ///     use for some quick testing.
         /// </summary>
         /// <param name="logFile"></param>
         public SubscriptionWrapper(LogFile logFile)
