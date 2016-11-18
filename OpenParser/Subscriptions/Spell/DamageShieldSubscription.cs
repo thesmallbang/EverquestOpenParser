@@ -10,7 +10,7 @@ namespace OpenParser.Subscriptions.Spell
         public DamageShieldSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<Combat<DamageShieldInfo>>(logFile,
-                new RegexStrategy<Combat<DamageShieldInfo>>(CompiledRegex.DamageRegex, HandleMatches));
+                new RegexStrategy<Combat<DamageShieldInfo>>(CompiledRegex.DamageShieldRegex, HandleMatches));
             Subscribe();
         }
 

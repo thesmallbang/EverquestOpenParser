@@ -10,7 +10,7 @@ namespace OpenParser.Subscriptions.Spell
         public SpellDamageSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<Combat<DamageInfo>>(logFile,
-                new RegexStrategy<Combat<DamageInfo>>(CompiledRegex.DamageRegex, HandleMatches));
+                new RegexStrategy<Combat<DamageInfo>>(CompiledRegex.SpellDamageRegex, HandleMatches));
             Subscribe();
         }
 
@@ -18,7 +18,7 @@ namespace OpenParser.Subscriptions.Spell
         private Combat<DamageInfo> HandleMatches(LogEntry entry, Match match)
         {
             var attacker = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
-            var target = match.Groups[3].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var target = match.Groups[2].Value.AttemptCharacterNameReplace(LogFile.Character);
 
             long damage;
             long.TryParse(match.Groups[5].Value, out damage);
