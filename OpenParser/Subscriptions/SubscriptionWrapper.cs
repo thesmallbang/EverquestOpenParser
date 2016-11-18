@@ -79,6 +79,9 @@ namespace OpenParser.Subscriptions
             var deathSubscription = new DeathSubscription(logFile);
             deathSubscription.Matched += DeathSubscription_Matched;
             Subscriptions.Add(deathSubscription);
+
+            var zoneSubscription = new ZoneSubscription(logFile);
+            zoneSubscription.Matched += ZoneSubscription_Matched;
         }
 
 
@@ -216,6 +219,13 @@ namespace OpenParser.Subscriptions
         private void DeathSubscription_Matched(object sender, Combat<EmptyInfo> e)
         {
             OnDeath?.Invoke(sender, e);
+        }
+
+        public event EventHandler<EventResult<string>> OnZone;
+
+        private void ZoneSubscription_Matched(object sender, EventResult<string> e)
+        {
+            OnZone?.Invoke(sender, e);
         }
     }
 }

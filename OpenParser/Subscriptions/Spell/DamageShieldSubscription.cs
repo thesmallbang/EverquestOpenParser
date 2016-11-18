@@ -22,7 +22,6 @@ namespace OpenParser.Subscriptions.Spell
             var damageSource = match.Groups[2].Value;
             var affectType = match.Groups[4].Value;
 
-
             long damage;
             long.TryParse(match.Groups[5].Value, out damage);
 

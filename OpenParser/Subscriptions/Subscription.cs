@@ -31,6 +31,9 @@ namespace OpenParser.Subscriptions
 
         protected virtual void Subscriber_Matched(object sender, TEventResult e)
         {
+            if (e == null)
+                return;
+
             Matched?.Invoke(sender, e);
         }
     }

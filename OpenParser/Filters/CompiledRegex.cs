@@ -65,6 +65,8 @@ namespace OpenParser.Filters
         public static Regex SpellImmunityRegex { get; } = new Regex(@"\AYour target is immune to (.+)$",
             RegexOptions.Compiled);
 
+        public static Regex ZoneRegex { get; } = new Regex(@"\AYou have entered (.+)\.$", RegexOptions.Compiled);
+
         public static Regex SystemMessageRegex { get; } =
             new Regex(@"\A<SYSTEMWIDE_MESSAGE>: ?(.+?)$", RegexOptions.Compiled);
     }
