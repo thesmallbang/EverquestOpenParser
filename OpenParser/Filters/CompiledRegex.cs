@@ -2,7 +2,9 @@
 
 namespace OpenParser.Filters
 {
-    //switching from string to compiled regex which made more sense (seen in https://github.com/rumstil/eqlogparser/blob/master/core/LogParser.cs) 
+    // Regex inspirations:
+    //https://github.com/rumstil/eqlogparser/blob/master/core/LogParser.cs (Using Regex compiled option)
+    //http://search.cpan.org/~danboo/Games-EverQuest-LogLineParser-0.08/lib/Games/EverQuest/LogLineParser.pm (
 
     public static class CompiledRegex
     {
@@ -64,6 +66,9 @@ namespace OpenParser.Filters
 
         public static Regex SpellImmunityRegex { get; } = new Regex(@"\AYour target is immune to (.+)$",
             RegexOptions.Compiled);
+
+        public static Regex SpellDamageRegex { get; } =
+            new Regex(@"^\A(.+?) hit (.+?) for (\d+) points of non-melee damage\.$");
 
         public static Regex ZoneRegex { get; } = new Regex(@"\AYou have entered (.+)\.$", RegexOptions.Compiled);
 
