@@ -68,7 +68,7 @@ It is very simple to add your own custom subsciptions which can implement a few 
 ##### RegexStrategy #####
 This strategy is used to check a log entry against a regex pattern and trigger an event if matched.
 
-The [SaySubscription](https://github.com/thesmallbang/EverquestOpenParser/blob/master/OpenParser/Subscribers/SaySubscription.cs) uses the RegexStrategy and is a very simple example of how to create your own subscriptions.
+The [SaySubscription](https://github.com/thesmallbang/EverquestOpenParser/blob/master/OpenParser/Subscriptions/Chat/SaySubscription.cs) uses the RegexStrategy and is a very simple example of how to create your own subscriptions.
 
 
 ##### RegexWithInverseStrategy #####
