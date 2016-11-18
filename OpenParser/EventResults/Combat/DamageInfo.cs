@@ -1,8 +1,8 @@
 ﻿namespace OpenParser.EventResults.Combat
 {
-    public class MeleeDamageInfo : IDamageInfo
+    public class DamageInfo : IDamageInfo
     {
-        public MeleeDamageInfo(long amount, string damageType)
+        public DamageInfo(long amount, string damageType)
         {
             Amount = amount;
             DamageType = damageType;

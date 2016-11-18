@@ -52,14 +52,15 @@
     <Compile Include="EventResults\Faction.cs" />
     <Compile Include="EventResults\Combat\ICombatInfo.cs" />
     <Compile Include="EventResults\Combat\IDamageInfo.cs" />
-    <Compile Include="EventResults\Combat\SpellDamageInfo.cs" />
     <Compile Include="EventResults\Combat\MeleeMissInfo.cs" />
-    <Compile Include="EventResults\Combat\MeleeDamageInfo.cs" />
+    <Compile Include="EventResults\Combat\DamageInfo.cs" />
     <Compile Include="EventResults\Empty.cs" />
     <Compile Include="EventResults\Chat\Say.cs" />
     <Compile Include="EventResults\Chat\ChatMessage.cs" />
     <Compile Include="EventResults\Chat\ChannelMessage.cs" />
     <Compile Include="EventResults\Chat\Tell.cs" />
+    <Compile Include="Subscriptions\Spell\SpellDamageSubscription.cs" />
+    <Compile Include="Subscriptions\LevelSubscription.cs" />
     <Compile Include="Subscriptions\ZoneSubscription.cs" />
     <Compile Include="Subscriptions\Spell\DamageShieldSubscription.cs" />
     <Compile Include="Subscriptions\Spell\ImmunitySubscription.cs" />

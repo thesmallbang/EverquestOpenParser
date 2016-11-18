@@ -72,6 +72,9 @@ namespace OpenParser.Filters
 
         public static Regex ZoneRegex { get; } = new Regex(@"\AYou have entered (.+)\.$", RegexOptions.Compiled);
 
+        public static Regex LevelRegex { get; } = new Regex(@"\AYou have gained a level! Welcome to level (\d+)!$",
+            RegexOptions.Compiled);
+
         public static Regex SystemMessageRegex { get; } =
             new Regex(@"\A<SYSTEMWIDE_MESSAGE>: ?(.+?)$", RegexOptions.Compiled);
     }

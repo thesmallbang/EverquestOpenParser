@@ -44,6 +44,7 @@ namespace OpenParser.Subscriptions
 
             var auctionSubscription = new AuctionSubscription(logFile);
             auctionSubscription.Matched += AuctionSubscription_Matched;
+            Subscriptions.Add(auctionSubscription);
 
             var channelSubscription = new ChannelSubscription(logFile);
             channelSubscription.Matched += ChannelSubscription_Matched;
@@ -59,9 +60,11 @@ namespace OpenParser.Subscriptions
 
             var physicalMissSubscription = new PhysicalMissSubscription(logFile);
             physicalMissSubscription.Matched += PhysicalMissSubscription_Matched;
+            Subscriptions.Add(physicalMissSubscription);
 
             var fizzleSubscription = new FizzleSubscription(logFile);
             fizzleSubscription.Matched += FizzleSubscription_Matched;
+            Subscriptions.Add(fizzleSubscription);
 
             var spellWornSubscription = new WornOffSubscription(logFile);
             spellWornSubscription.Matched += SpellWornSubscription_Matched;
@@ -71,17 +74,28 @@ namespace OpenParser.Subscriptions
 
             var spellImmunitySubscription = new ImmunitySubscription(logFile);
             spellImmunitySubscription.Matched += SpellImmunitySubscription_Matched;
+            Subscriptions.Add(spellImmunitySubscription);
 
-            var experienceSubscription = new ExperienceSubscription(logFile);
-            experienceSubscription.Matched += ExperienceSubscription_Matched;
+            var spellDamageSubscription = new SpellDamageSubscription(logFile);
+            spellDamageSubscription.Matched += SpellDamageSubscription_Matched;
+            Subscriptions.Add(spellDamageSubscription);
 
             //create death sub last to make sure it comes after combat subscriptions for most common use cases
             var deathSubscription = new DeathSubscription(logFile);
             deathSubscription.Matched += DeathSubscription_Matched;
             Subscriptions.Add(deathSubscription);
 
+            var experienceSubscription = new ExperienceSubscription(logFile);
+            experienceSubscription.Matched += ExperienceSubscription_Matched;
+            Subscriptions.Add(experienceSubscription);
+
+            var levelSubscription = new LevelSubscription(logFile);
+            levelSubscription.Matched += LevelSubscription_Matched;
+            Subscriptions.Add(levelSubscription);
+
             var zoneSubscription = new ZoneSubscription(logFile);
             zoneSubscription.Matched += ZoneSubscription_Matched;
+            Subscriptions.Add(zoneSubscription);
         }
 
 
@@ -170,16 +184,16 @@ namespace OpenParser.Subscriptions
             OnFaction?.Invoke(sender, e);
         }
 
-        public event EventHandler<Combat<SpellDamageInfo>> OnSpellDot;
+        public event EventHandler<Combat<DamageInfo>> OnSpellDot;
 
-        private void DotSubscription_Matched(object sender, Combat<SpellDamageInfo> e)
+        private void DotSubscription_Matched(object sender, Combat<DamageInfo> e)
         {
             OnSpellDot?.Invoke(sender, e);
         }
 
-        public event EventHandler<Combat<MeleeDamageInfo>> OnPhsyicalHit;
+        public event EventHandler<Combat<DamageInfo>> OnPhsyicalHit;
 
-        private void PhysicalHitSubscription_Matched(object sender, Combat<MeleeDamageInfo> e)
+        private void PhysicalHitSubscription_Matched(object sender, Combat<DamageInfo> e)
         {
             OnPhsyicalHit?.Invoke(sender, e);
         }
@@ -211,6 +225,21 @@ namespace OpenParser.Subscriptions
         private void ExperienceSubscription_Matched(object sender, Experience e)
         {
             OnExperience?.Invoke(sender, e);
+        }
+
+
+        public event EventHandler<EventResult<byte>> OnLevel;
+
+        private void LevelSubscription_Matched(object sender, EventResult<byte> e)
+        {
+            OnLevel?.Invoke(sender, e);
+        }
+
+        public event EventHandler<Combat<DamageInfo>> OnSpellDamage;
+
+        private void SpellDamageSubscription_Matched(object sender, Combat<DamageInfo> e)
+        {
+            OnSpellDamage?.Invoke(sender, e);
         }
 
 

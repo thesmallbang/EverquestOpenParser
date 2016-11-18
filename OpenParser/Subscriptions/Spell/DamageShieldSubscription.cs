@@ -17,7 +17,7 @@ namespace OpenParser.Subscriptions.Spell
 
         private Combat<DamageShieldInfo> HandleMatches(LogEntry entry, Match match)
         {
-            var attacker = match.Groups[3].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var attacker = match.Groups[3].Value.AttemptCharacterNameReplace(LogFile.Character).Replace("'s", "");
             var target = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
             var damageSource = match.Groups[2].Value;
             var affectType = match.Groups[4].Value;
