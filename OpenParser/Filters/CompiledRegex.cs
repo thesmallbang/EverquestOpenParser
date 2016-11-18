@@ -75,6 +75,8 @@ namespace OpenParser.Filters
         public static Regex LevelRegex { get; } = new Regex(@"\AYou have gained a level! Welcome to level (\d+)!$",
             RegexOptions.Compiled);
 
+        public static Regex SkillUpRegex { get; } = new Regex(@"\AYou have become better at (.+?)! \((\d+)\)$");
+
         public static Regex SystemMessageRegex { get; } =
             new Regex(@"\A<SYSTEMWIDE_MESSAGE>: ?(.+?)$", RegexOptions.Compiled);
     }

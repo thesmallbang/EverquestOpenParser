@@ -68,6 +68,8 @@ namespace OpenParser.Subscriptions
 
             var spellWornSubscription = new WornOffSubscription(logFile);
             spellWornSubscription.Matched += SpellWornSubscription_Matched;
+            Subscriptions.Add(spellWornSubscription);
+
             var dotSubscription = new DotSubscription(logFile);
             dotSubscription.Matched += DotSubscription_Matched;
             Subscriptions.Add(dotSubscription);
@@ -96,6 +98,10 @@ namespace OpenParser.Subscriptions
             var zoneSubscription = new ZoneSubscription(logFile);
             zoneSubscription.Matched += ZoneSubscription_Matched;
             Subscriptions.Add(zoneSubscription);
+
+            var skillUpSubscription = new SkillUpSubscription(logFile);
+            skillUpSubscription.Matched += SkillUpSubscription_Matched;
+            Subscriptions.Add(skillUpSubscription);
         }
 
 
@@ -184,9 +190,9 @@ namespace OpenParser.Subscriptions
             OnFaction?.Invoke(sender, e);
         }
 
-        public event EventHandler<Combat<DamageInfo>> OnSpellDot;
+        public event EventHandler<Combat<DotDamageInfo>> OnSpellDot;
 
-        private void DotSubscription_Matched(object sender, Combat<DamageInfo> e)
+        private void DotSubscription_Matched(object sender, Combat<DotDamageInfo> e)
         {
             OnSpellDot?.Invoke(sender, e);
         }
@@ -255,6 +261,13 @@ namespace OpenParser.Subscriptions
         private void ZoneSubscription_Matched(object sender, EventResult<string> e)
         {
             OnZone?.Invoke(sender, e);
+        }
+
+        public event EventHandler<SkillUp> OnSkillUp;
+
+        private void SkillUpSubscription_Matched(object sender, SkillUp e)
+        {
+            OnSkillUp?.Invoke(sender, e);
         }
     }
 }
