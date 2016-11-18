@@ -21,7 +21,7 @@ namespace OpenParser.Subscriptions.Spell
             var target = match.Groups[2].Value.AttemptCharacterNameReplace(LogFile.Character);
 
             long damage;
-            long.TryParse(match.Groups[5].Value, out damage);
+            long.TryParse(match.Groups[3].Value, out damage);
 
             return new Combat<DamageInfo>(entry, attacker.AttemptCharacterNameReplace(LogFile.Character),
                 target.AttemptCharacterNameReplace(LogFile.Character),
