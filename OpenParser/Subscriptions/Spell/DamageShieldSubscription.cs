@@ -17,28 +17,18 @@ namespace OpenParser.Subscriptions.Spell
 
         private Combat<DamageShieldInfo> HandleMatches(LogEntry entry, Match match)
         {
-            string attacker;
-            string target;
-            string damageSource;
+            var attacker = match.Groups[3].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var target = match.Groups[1].Value.AttemptCharacterNameReplace(LogFile.Character);
+            var damageSource = match.Groups[2].Value;
+            var affectType = match.Groups[4].Value;
 
-            if (match.Groups[2].Value == "has")
-            {
-                attacker = match.Groups[4].Value;
-                target = match.Groups[1].Value;
-                damageSource = match.Groups[6].Value;
-            }
-            else
-            {
-                attacker = match.Groups[6].Value;
-                target = match.Groups[1].Value;
-                damageSource = match.Groups[4].Value;
-            }
 
             long damage;
-            long.TryParse(match.Groups[3].Value, out damage);
+            long.TryParse(match.Groups[5].Value, out damage);
 
             return new Combat<DamageShieldInfo>(entry, attacker.AttemptCharacterNameReplace(LogFile.Character),
-                target.AttemptCharacterNameReplace(LogFile.Character), new DamageShieldInfo(damage, damageSource, ""));
+                target.AttemptCharacterNameReplace(LogFile.Character),
+                new DamageShieldInfo(damage, damageSource, affectType));
         }
     }
 }
