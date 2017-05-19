@@ -10,7 +10,7 @@ namespace OpenParser.Subscriptions
         public SkillUpSubscription(LogFile logFile) : base(logFile)
         {
             Subscriber = new Subscriber<SkillUp>(logFile,
-                new RegexStrategy<SkillUp>(CompiledRegex.DamageRegex, HandleMatches));
+                new RegexStrategy<SkillUp>(CompiledRegex.SkillUpRegex, HandleMatches));
             Subscribe();
         }
 
