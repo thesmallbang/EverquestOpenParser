@@ -8,7 +8,7 @@ namespace OpenParser.Filters
 
     public static class CompiledRegex
     {
-        public static Regex TellRegex { get; } = new Regex(@"\A(.+?) (told|tells) (\w*?)(,?) '(.+)'$",
+        public static Regex TellRegex { get; } = new Regex(@"\A(.+?) (told|tells) (\w*?)(,?) '(.*)'$",
             RegexOptions.Compiled);
 
         public static Regex SayRegex { get; } = new Regex(@"\A(.+?) (say|says)(,?) '(.+)'$", RegexOptions.Compiled);
